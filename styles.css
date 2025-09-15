@@ -1,0 +1,462 @@
+/* ESTILOS GENERALES Y FUENTES*/
+body {
+    font-family: perpetua, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Color del fondo */
+}
+
+/* Contenedor principal para centrar el contenido */
+.container {
+    max-width: 1000px;
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 20px;
+}
+
+/* Clase de utilidad para ocultar elementos */
+.hidden {
+    display: none;
+}
+
+/* ENCABEZADO Y NAVEGACIÓN */
+.header {
+    background-color: #3498db; /* Color principal */
+    color: white;
+    padding: 15px 20px;
+    display: flex; /* Permite alinear el logo y la navegación */
+    justify-content: space-between; /* Espacio entre el logo y la navegación */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.paw-icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces de navegación */
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Efecto sutil al pasar el mouse */
+}
+
+.login-btn {
+    background-color: #27ae60 !important; /* Color del botón de iniciar sesión */
+    color: white !important;
+}
+
+
+/* SECCIÓN HERO Y BOTONES PRINCIPALES */
+.hero {
+    text-align: center;
+    background: white;
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #2c3e50; /* Color oscuro para el texto */
+}
+
+.hero p {
+    font-size: 16px;
+    color: #7f8c8d; /* Gris para el texto secundario */
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo base para los botones */
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px; /* Botones redondeados */
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #2980b9; /* Un azul más oscuro al pasar el mouse */
+}
+
+.btn-green {
+    background-color: #27ae60; /* Botón verde para acciones importantes */
+}
+
+.btn-green:hover {
+    background-color: #219a52;
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 14px;
+    margin: 0 5px;
+}
+
+/* SECCIÓN DE ESTADÍSTICAS */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+}
+
+.stat {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    min-width: 180px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-left: 4px solid #3498db; /* Acento de color a la izquierda */
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    color: #2c3e50;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* ESTILOS DE FORMULARIOS */
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user-greeting {
+    color: #3498db;
+    font-size: 18px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    gap: 30px;
+}
+
+.form-row, .form-row-three {
+    display: grid;
+    gap: 15px;
+}
+.form-row { grid-template-columns: 1fr 1fr; }
+.form-row-three { grid-template-columns: 1fr 1fr 1fr; }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ecf0f1; /* Borde gris claro */
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 80px;
+}
+
+/* Efecto al hacer foco en un campo del formulario */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db; /* Resalta el borde en azul */
+}
+
+.full-width {
+    grid-column: 1 / -1; /* Ocupa todo el ancho en un grid */
+}
+
+.section-title {
+    color: #2c3e50;
+    margin: 24px 0 12px 0;
+}
+
+.form-actions {
+    text-align:center;
+    margin-top:24px;
+    padding-top:16px;
+    border-top:2px solid #ecf0f1;
+}
+
+/* COMPONENTES ESPECÍFICOS */
+/* Caja de análisis en el formulario */
+.analysis-box {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.analysis-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Pantalla de carga */
+.loading {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 25px;
+    background-color: #ecf0f1;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    width: 0%;
+    transition: width 0.5s; /* Animación suave del progreso */
+}
+
+.steps {
+    text-align: left;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.step {
+    padding: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+/* Tarjetas de resultados de mascotas */
+.pet-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.compatibility {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.high-match { background-color: #27ae60; /* Verde para alta compatibilidad */ }
+.medium-match { background-color: #f39c12; /* Naranja para media */ }
+
+.pet-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.pet-details {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.warning-box {
+    background: #f39c12;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Caja de recomendación principal */
+.recommendation-box {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* PANEL DE ADMINISTRACIÓN */
+.admin-panel {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.admin-stats {
+    display: grid;
+    /* Columnas automáticas que se ajustan al espacio disponible */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.admin-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.admin-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 5px;
+}
+
+.admin-card-title {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.admin-card-desc {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Elementos de la lista de matches */
+.match-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-info { flex: 1; }
+
+.match-names {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.match-details {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.monthly-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.monthly-stat-item { margin: 10px; }
+.monthly-stat-number { font-size: 24px; font-weight: bold; color: #2c3e50; }
+.monthly-stat-label { color: #7f8c8d; font-size: 14px; }
+
+
+/* FORMULARIO DE REGISTRO DE MASCOTAS */
+.pet-form-header {
+    background: linear-gradient(135deg, #868f96, #596164); /* Gradiente gris */
+    color: white;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    /* Margen negativo para que toque los bordes del contenedor padre */
+    margin: -30px -30px 30px -30px;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    display: none; /* Oculto por defecto */
+}
+
+/* MEDIA QUERIES (DISEÑO RESPONSIVO) */
+/* Estilos para pantallas con un ancho máximo de 768px (tablets y móviles) */
+@media (max-width: 768px) {
+    .nav {
+        display: none; /* Oculta la navegación principal en móviles */
+    }
+    
+    .form-grid, .form-row, .form-row-three {
+        grid-template-columns: 1fr; /* Cambia los grids a una sola columna */
+    }
+
+    .match-item {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .stats {
+        flex-direction: column; /* Apila las tarjetas de estadísticas */
+    }
+}
