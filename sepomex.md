@@ -137,16 +137,6 @@ SELECT * FROM sepomex LIMIT 5;
 
 ---
 
-## 5. Validación cruzada de claves
-
-### Estados con ID no válido en `sepomex`
-```sql
-SELECT DISTINCT s.estado_id, s.estado
-FROM sepomex s
-LEFT JOIN cat_estados e ON s.estado_id = e.estado_id
-WHERE e.estado_id IS NULL
-  AND s.estado_id IS NOT NULL;
-```
 
 
 
