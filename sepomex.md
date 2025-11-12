@@ -73,7 +73,6 @@ CREATE TABLE sepomex (
   asentamiento_id INTEGER,
   asentamiento TEXT,
   tipo_asentamiento TEXT,
-  clave_oficina INTEGER,
   ciudad TEXT
 );
 ```
