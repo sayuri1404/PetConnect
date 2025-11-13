@@ -126,7 +126,7 @@ JOIN S.Sepomex ON S.id_codigo_postal = D.id_codigo_postal
 AND S.asentamiento = D.asentamiento
 JOIN E.Estado ON E.id_estado = S.id_estado;
 
-'''
+´´´
 ---
 ## 6 Consultas desde aplicaciones (Python y PHP)
 
