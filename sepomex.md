@@ -121,9 +121,9 @@ SELECT
   D.num_interior,
   D.referencia
 FROM domicilio AS D
-JOIN S.Sepomex ON S.id_codigo_postal = D.id_codigo_postal
+JOIN Sepomex AS S ON S.id_codigo_postal = D.id_codigo_postal
 AND S.asentamiento = D.asentamiento
-JOIN E.Estado ON E.id_estado = S.id_estado;
+JOIN Estado AS E ON E.id_estado = S.id_estado;
 
 ```
 ---
