@@ -97,14 +97,14 @@ Importar los archivos CSV:
 
 Verificar el número de registros en cada tabla:
 ```sql
-SELECT COUNT(*) FROM cat_estados;
-SELECT COUNT(*) FROM sepomex;
+SELECT COUNT(*) FROM Estado;
+SELECT COUNT(*) FROM Sepomex;
 ```
 
 Ver los primeros registros:
 ```sql
-SELECT * FROM cat_estados LIMIT 5;
-SELECT * FROM sepomex LIMIT 5;
+SELECT * FROM Estado LIMIT 5;
+SELECT * FROM Sepomex LIMIT 5;
 ```
 
 ---
