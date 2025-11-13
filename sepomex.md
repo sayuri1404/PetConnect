@@ -35,8 +35,7 @@ CREATE TABLE Estado (
 
 
 CREATE TABLE sepomex (
-  id SERIAL PRIMARY KEY,
-  codigo_postal TEXT NOT NULL,
+  codigo_postal SERIAL PRIMARY KEY,
   estado_id INTEGER,
   estado TEXT,
   municipio_id INTEGER,
