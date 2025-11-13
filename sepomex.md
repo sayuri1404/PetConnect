@@ -34,18 +34,30 @@ CREATE TABLE Estado (
 );
 
 
-CREATE TABLE sepomex (
-  codigo_postal SERIAL PRIMARY KEY,
-  estado_id INTEGER,
-  estado TEXT,
-  municipio_id INTEGER,
-  municipio TEXT,
-  asentamiento_id INTEGER,
-  asentamiento TEXT,
+CREATE TABLE Sepomex (
+  codigo_postal CHAR (5),
+  id_estado INTEGER,
+  municipio VARCHAR (150),
+  asentamiento VARCHAR (150),
   tipo_asentamiento TEXT,
-  ciudad TEXT,
-  FOREIGN KEY (estado_id) REFERENCES Estado(id_estado)
+  ciudad VARCHAR (50),
+  PRIMARY KEY (codigo_postal, asentamiento) 
+  FOREIGN KEY (id_estado) REFERENCES Estado(id_estado)
 );
+
+
+CREATE TABLE Domicilio (
+  id_domicilio BIGSERIAL PRIMARY KEY,  
+  codigo_postal CHAR (5),
+  asentamiento VARCHAR (150),
+  calle VARCHAR (150),
+  num_exterior VARCHAR (150),
+  num_interior VARCHAR (150),
+  referencia TEXT,
+    FOREIGN KEY ((codigo_postal, asentamiento)
+      REFERENCES sepomex(codigo_postal, asentamiento)
+);
+  
 
 ## 3.2. Importación de datos
 
@@ -96,7 +108,24 @@ SELECT * FROM sepomex LIMIT 5;
 ```
 
 ---
-## 5 Consultas desde aplicaciones (Python y PHP)
+## 5 Consultas 
+
+SELECT 
+  D.id_domicilio,  
+  S.codigo_postal,
+  S.asentamiento,
+  E.estado
+  D.calle,
+  D.num_exterior,
+  D.num_interior,
+  D.referencia
+FROM domicilio AS D
+JOIN S.Sepomex ON S.id_codigo_postal = D.id_codigo_postal
+AND S.asentamiento = D.asentamiento
+JOIN E.Estado ON E.id_estado = S.id_estado;
+
+---
+## 6 Consultas desde aplicaciones (Python y PHP)
 
 Este sistema puede integrarse fácilmente en formularios web o móviles. A continuación se muestran ejemplos de cómo consultar la base de datos para autocompletar los campos de domicilio usando el código postal.
 
