@@ -111,7 +111,6 @@ SELECT * FROM sepomex LIMIT 5;
 ## 5 Consultas 
 
 ´´´sql
-
 SELECT 
   D.id_domicilio,  
   S.codigo_postal,
@@ -125,7 +124,6 @@ FROM domicilio AS D
 JOIN S.Sepomex ON S.id_codigo_postal = D.id_codigo_postal
 AND S.asentamiento = D.asentamiento
 JOIN E.Estado ON E.id_estado = S.id_estado;
-
 ´´´
 ---
 ## 6 Consultas desde aplicaciones (Python y PHP)
