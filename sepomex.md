@@ -25,43 +25,14 @@ El desarrollo del sistema se llevó a cabo siguiendo un enfoque centrado en la o
 
 ## 3.Creación de tablas
 
-### Tabla `cat_estados`
-```sql
-DROP TABLE IF EXISTS cat_estados CASCADE;
 
-CREATE TABLE cat_estados (
-  estado_id INTEGER PRIMARY KEY,
-  estado TEXT NOT NULL
+```sql
+
+CREATE TABLE Estado (
+  id_estado INTEGER PRIMARY KEY,
+  nombre VARCHAR(45)
 );
-```
 
-### Tabla `cat_municipios`
-```sql
-DROP TABLE IF EXISTS cat_municipios CASCADE;
-
-CREATE TABLE cat_municipios (
-  municipio_id INTEGER PRIMARY KEY,
-  estado_id INTEGER NOT NULL,
-  municipio TEXT NOT NULL,
-  FOREIGN KEY (estado_id) REFERENCES cat_estados(estado_id)
-);
-```
-
-### Tabla `cat_asentamientos`
-```sql
-DROP TABLE IF EXISTS cat_asentamientos CASCADE;
-
-CREATE TABLE cat_asentamientos (
-  asentamiento_id INTEGER PRIMARY KEY,
-  municipio_id INTEGER NOT NULL,
-  asentamiento TEXT NOT NULL,
-  FOREIGN KEY (municipio_id) REFERENCES cat_municipios(municipio_id)
-);
-```
-
-### Tabla `sepomex`
-```sql
-DROP TABLE IF EXISTS sepomex CASCADE;
 
 CREATE TABLE sepomex (
   id SERIAL PRIMARY KEY,
@@ -73,11 +44,9 @@ CREATE TABLE sepomex (
   asentamiento_id INTEGER,
   asentamiento TEXT,
   tipo_asentamiento TEXT,
-  ciudad TEXT
+  ciudad TEXT,
+  FOREIGN KEY (estado_id) REFERENCES Estado(id_estado)
 );
-```
-
----
 
 ## 3.2. Importación de datos
 
@@ -91,8 +60,6 @@ psql -U tu_usuario -d fundacion
 Importar los archivos CSV:
 ```sql
 \COPY cat_estados FROM '/home/usuario/ruta/cat_estados.csv' WITH (FORMAT csv, HEADER true);
-\COPY cat_municipios FROM '/home/usuario/ruta/cat_municipios.csv' WITH (FORMAT csv, HEADER true);
-\COPY cat_asentamientos FROM '/home/usuario/ruta/cat_asentamientos.csv' WITH (FORMAT csv, HEADER true);
 \COPY sepomex FROM '/home/usuario/ruta/sepomex_base.csv' WITH (FORMAT csv, HEADER true);
 ```
 
@@ -106,8 +73,6 @@ psql -U tu_usuario -d sepomex
 Importar los archivos CSV:
 ```sql
 \COPY cat_estados FROM '/ruta/archivos/cat_estados.csv' WITH (FORMAT csv, HEADER true);
-\COPY cat_municipios FROM '/ruta/archivos/cat_municipios.csv' WITH (FORMAT csv, HEADER true);
-\COPY cat_asentamientos FROM '/ruta/archivos/cat_asentamientos.csv' WITH (FORMAT csv, HEADER true);
 \COPY sepomex FROM '/ruta/archivos/sepomex.csv' WITH (FORMAT csv, HEADER true);
 ```
 
@@ -122,22 +87,79 @@ Importar los archivos CSV:
 Verificar el número de registros en cada tabla:
 ```sql
 SELECT COUNT(*) FROM cat_estados;
-SELECT COUNT(*) FROM cat_municipios;
-SELECT COUNT(*) FROM cat_asentamientos;
 SELECT COUNT(*) FROM sepomex;
 ```
 
 Ver los primeros registros:
 ```sql
 SELECT * FROM cat_estados LIMIT 5;
-SELECT * FROM cat_municipios LIMIT 5;
-SELECT * FROM cat_asentamientos LIMIT 5;
 SELECT * FROM sepomex LIMIT 5;
 ```
 
 ---
+## 5 Consultas desde aplicaciones (Python y PHP)
+
+Este sistema puede integrarse fácilmente en formularios web o móviles. A continuación se muestran ejemplos de cómo consultar la base de datos para autocompletar los campos de domicilio usando el código postal.
+
+---
+
+### Python (Flask + psycopg2)
+
+```python
+import psycopg2
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Conexión a PostgreSQL
+conn = psycopg2.connect(
+    dbname="tu_base",
+    user="tu_usuario",
+    password="tu_contraseña",
+    host="localhost",
+    port="5432"
+)
+
+@app.route('/buscar_datos', methods=['GET'])
+def buscar_datos():
+    cp = request.args.get('codigo_postal')
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT DISTINCT estado, municipio, asentamiento
+        FROM sepomex
+        WHERE codigo_postal = %s
+    """, (cp,))
+    resultados = cur.fetchall()
+    cur.close()
+
+    datos = [{"estado": r[0], "municipio": r[1], "asentamiento": r[2]} for r in resultados]
+    return jsonify(datos)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
+<?php
+$cp = $_GET['codigo_postal'];
+
+try {
+    $pdo = new PDO("pgsql:host=localhost;dbname=tu_base", "tu_usuario", "tu_contraseña");
+
+    $stmt = $pdo->prepare("
+        SELECT DISTINCT estado, municipio, asentamiento
+        FROM sepomex
+        WHERE codigo_postal = :cp
+    ");
+    $stmt->bindParam(':cp', $cp);
+    $stmt->execute();
+
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($resultados);
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
 
 
 
