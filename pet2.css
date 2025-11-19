@@ -1,0 +1,822 @@
+/* --- VARIABLES Y GLOBALES --- */
+:root {
+    --primary-color: #0077b6;
+    --secondary-color: #00b4d8;
+    --accent-color: #03045e;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --text-color: #333333;
+    --background-color: #f8f9fa;
+    --light-gray: #dee2e6;
+    --border-radius: 12px;
+    --font-family: 'Poppins', sans-serif;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* --- NAVEGACIÓN --- */
+nav {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+nav .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav .btn-nav {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: var(--font-family);
+}
+
+nav .btn-nav:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+nav .btn-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav .btn-icon:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+#welcome-message {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.badge {
+    background-color: var(--danger-color);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.75em;
+    font-weight: 700;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    text-align: center;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, #e0f7ff 0%, #ffffff 100%);
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: 1.3em;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-top: 1px solid var(--light-gray);
+    color: #666;
+    margin-top: 40px;
+}
+
+/* --- PANTALLAS Y LAYOUT --- */
+.screen {
+    padding: 40px 50px;
+    animation: fadeIn 0.6s;
+    min-height: 500px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- FORMULARIOS --- */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-layout {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-back-link {
+    display: block;
+    text-align: left;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+.form-back-link:hover {
+    text-decoration: underline;
+}
+
+fieldset {
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+legend {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: var(--font-family);
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.2);
+}
+
+.input-group input:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.form-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- BOTONES --- */
+.btn {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: white;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    font-family: var(--font-family);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 119, 182, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.btn-small {
+    padding: 8px 20px;
+    font-size: 0.9em;
+    width: auto;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* --- DASHBOARD --- */
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.dashboard-tabs {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid var(--light-gray);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s ease;
+    font-family: var(--font-family);
+    position: relative;
+    font-size: 1em;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-btn .badge {
+    position: relative;
+    top: -2px;
+    left: 5px;
+    background-color: var(--danger-color);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
+}
+
+/* --- ALERTAS --- */
+.alert {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-left: 4px solid var(--warning-color);
+    color: #856404;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-left: 4px solid var(--success-color);
+    color: #155724;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-left: 4px solid #17a2b8;
+    color: #0c5460;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-left: 4px solid var(--danger-color);
+    color: #721c24;
+}
+
+/* --- FILTROS --- */
+.filters-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filters-bar select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    flex: 1;
+    min-width: 150px;
+}
+
+/* --- GRID DE MASCOTAS --- */
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.pet-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pet-card-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #e0f7ff 0%, #b8e6f5 100%);
+}
+
+.pet-card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--success-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.pet-card-badge.adopted {
+    background-color: var(--danger-color);
+}
+
+.pet-card-content {
+    padding: 20px;
+}
+
+.pet-card-name {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.pet-card-info {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.pet-card-info strong {
+    color: var(--text-color);
+}
+
+.pet-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.pet-card-actions button {
+    flex: 1;
+}
+
+/* --- TARJETAS DE DONACIÓN (FUNDACIÓN) --- */
+.donation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.fundacion-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.fundacion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.fundacion-card-name {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.fundacion-card-email, .fundacion-card-phone {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.fundacion-card .btn-small {
+    width: 100%;
+}
+
+
+/* --- LISTAS DE SOLICITUDES Y DONACIONES --- */
+.request-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.request-title {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.status-badge {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: white;
+}
+
+.status-badge.pendiente {
+    background-color: var(--warning-color);
+    color: #333;
+}
+
+.status-badge.aprobada {
+    background-color: var(--success-color);
+}
+
+.status-badge.rechazada {
+    background-color: var(--danger-color);
+}
+
+.status-badge.completada {
+    background-color: #6c757d;
+}
+
+.request-info {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+/* --- ESTILOS DE PERFIL (ADOPTANTE) --- */
+.profile-section {
+    margin-bottom: 30px;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 25px;
+}
+.profile-section h3 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.profile-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--light-gray);
+    font-size: 1em;
+}
+.profile-item:last-child {
+    border-bottom: none;
+}
+.profile-label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+.profile-value {
+    color: #555;
+    text-align: right;
+}
+
+/* --- ESTILOS DE DETALLES (MASCOTA) --- */
+.pet-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.pet-detail-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+.pet-detail-label {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 5px;
+}
+.pet-detail-value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* --- MODALES --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea arriba para scrolls largos */
+    z-index: 1001;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh; /* Se usa max-height para evitar que el modal sea más alto que la pantalla */
+    overflow-y: auto; /* Scroll dentro del modal */
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-content.medium-modal {
+    max-width: 700px;
+}
+
+.modal-content.large-modal {
+    max-width: 900px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5em;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--danger-color);
+}
+
+/* --- NOTIFICACIONES --- */
+.notification-item {
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-left: 5px solid;
+}
+.notification-item.info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+}
+.notification-item.success {
+    background-color: #d4edda;
+    border-color: var(--success-color);
+}
+.notification-item.error {
+    background-color: #f8d7da;
+    border-color: var(--danger-color);
+}
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.notification-title {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+.notification-time {
+    font-size: 0.85em;
+    color: #666;
+}
+.notification-message {
+    color: #333;
+}
+
+/* --- EMPTY STATE --- */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+}
+.empty-state-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+.empty-state-text {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
