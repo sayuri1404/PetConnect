@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PETCONNECT 🐾 - Sistema de Adopción y Donaciones</title>
+    <title>PetConnect 🐾 - Sistema de Adopción</title>
     <link rel="stylesheet" href="pet2.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
@@ -12,7 +12,7 @@
 
     <div class="container">
         <nav>
-            <div class="logo">PETCONNECT 🐾</div>
+            <div class="logo">PetConnect 🐾</div>
             <div id="nav-logged-out" class_name="nav-buttons">
                 <button id="show-register-btn" class="btn-nav">Registrarse</button>
                 <button id="show-login-btn" class="btn-nav">Iniciar Sesión</button>
@@ -28,7 +28,7 @@
             
             <section id="welcome-screen" class="screen">
                 <div class="hero">
-                    <h1>🐾 Bienvenido a PETCONNECT</h1>
+                    <h1>🐾 Bienvenido a PetConnect</h1>
                     <p class="hero-subtitle">Conectamos corazones con patitas que necesitan un hogar</p>
                     <div class="hero-stats">
                         <div class="stat-card">
@@ -220,113 +220,162 @@
 
     <div id="modal-overlay" class="modal-overlay hidden"></div>
 
-    <div id="modal-profile" class="modal hidden">
-        <div class="modal-content large-modal">
-            <button class="modal-close" data-close="true">&times;</button>
-            <h2>Completar Perfil de Adoptante</h2>
-            
-            <form id="profile-form">
-                
-                <fieldset>
-                    <legend>📍 Dirección</legend>
-                    <div class="input-group">
-                        <label for="profile-cp">Código Postal *</label>
-                        <input type="text" id="profile-cp" name="profile-cp" required placeholder="5 dígitos..." maxlength="5">
-                    </div>
-                    <div class="form-grid-2">
-                        <div class="input-group">
-                            <label>Estado</label>
-                            <input type="text" id="profile-estado" name="profile-estado" disabled>
-                        </div>
-                        <div class="input-group">
-                            <label>Municipio / Alcaldía</label>
-                            <input type="text" id="profile-municipio" name="profile-municipio" disabled>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label for="profile-asentamiento">Asentamiento (Colonia) *</label>
-                        <select id="profile-asentamiento" name="profile-asentamiento" required>
-                            <option value="">-- Esperando código postal --</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="profile-calle">Calle *</label>
-                        <input type="text" id="profile-calle" name="profile-calle" required>
-                    </div>
-                    <div class="form-grid-2">
-                        <div class="input-group">
-                            <label for="profile-num-ext">Número Exterior *</label>
-                            <input type="text" id="profile-num-ext" name="profile-num-ext" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="profile-num-int">Número Interior</label>
-                            <input type="text" id="profile-num-int" name="profile-num-int">
-                        </div>
-                    </div>
-                </fieldset>
+<div id="modal-profile" class="modal hidden">
+    <div class="modal-content large-modal">
+        <button class="modal-close" data-close="true">&times;</button>
+        <h2>Completar Perfil de Adoptante</h2>
+        
+        <form id="profile-form">
 
-                <fieldset>
-                    <legend>👤 Información Básica</legend>
-                    <div class="form-grid-2">
-                        <div class="input-group">
-                            <label for="profile-edad">Edad *</label>
-                            <input type="number" id="profile-edad" name="profile-edad" required min="18" max="100">
-                        </div>
-                        <div class="input-group">
-                            <label for="profile-ocupacion">Ocupación *</label>
-                            <input type="text" id="profile-ocupacion" name="profile-ocupacion" required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label for="profile-ingresos">Ingresos mensuales aproximados *</label>
-                        <select id="profile-ingresos" name="profile-ingresos" required>
-                            <option value="">-- Selecciona --</option>
-                            <option value="menor-5000">Menos de $5,000</option>
-                            <option value="5000-10000">$5,000 - $10,000</option>
-                            <option value="10000-20000">$10,000 - $20,000</option>
-                            <option value="mayor-20000">Más de $20,000</option>
-                        </select>
-                    </div>
-                </fieldset>
+            <fieldset>
+                <legend> 👤 Información Personal y Contacto</legend>
 
-                <fieldset>
-                    <legend>🏠 Entorno y Condiciones del Hogar</legend>
+                <div class="form-grid-2">
                     <div class="input-group">
-                        <label for="profile-tipo-vivienda">Tipo de vivienda *</label>
-                        <select id="profile-tipo-vivienda" name="profile-tipo-vivienda" required>
-                            <option value="">-- Selecciona --</option>
-                            <option value="casa-patio">Casa con patio</option>
-                            <option value="casa-sin-patio">Casa sin patio</option>
-                            <option value="departamento">Departamento</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-grid-2">
-                        <div class="input-group">
-                            <label for="profile-personas-hogar">Personas en el hogar *</label>
-                            <input type="number" id="profile-personas-hogar" name="profile-personas-hogar" required min="1" max="20">
-                        </div>
-                        <div class="input-group">
-                            <label for="profile-ninos">¿Hay niños pequeños? *</label>
-                            <select id="profile-ninos" name="profile-ninos" required>
-                                <option value="">-- Selecciona --</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
+                        <label for="profile-nombre">Nombre completo del solicitante *</label>
+                        <input type="text" id="profile-nombre" name="profile-nombre" required
+                               placeholder="Tal como aparece en tu identificación">
                     </div>
                     <div class="input-group">
-                        <label for="profile-otras-mascotas">¿Otras mascotas? *</label>
-                        <select id="profile-otras-mascotas" name="profile-otras-mascotas" required>
-                            <option value="">-- Selecciona --</option>
-                            <option value="si">Sí</option>
-                            <option value="no">No</option>
-                        </select>
+                        <label for="profile-edad">Edad *</label>
+                        <input type="number" id="profile-edad" name="profile-edad" required min="18" max="100">
                     </div>
-                </fieldset>
+                </div>
 
-                <fieldset>
-                    <legend>❤️ Experiencia y Motivación</legend>
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label for="profile-tel-movil">Teléfono móvil *</label>
+                        <input type="tel" id="profile-tel-movil" name="profile-tel-movil" required placeholder="10 dígitos">
+                    </div>
+                    <div class="input-group">
+                        <label for="profile-tel-fijo">Teléfono fijo</label>
+                        <input type="tel" id="profile-tel-fijo" name="profile-tel-fijo" placeholder="Opcional">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-email">Correo electrónico *</label>
+                    <input type="email" id="profile-email" name="profile-email" required placeholder="ejemplo@correo.com">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>📍 Dirección Completa</legend>
+                <div class="input-group">
+                    <label for="profile-cp">Código Postal *</label>
+                    <input type="text" id="profile-cp" name="profile-cp" required placeholder="5 dígitos..." maxlength="5">
+                </div>
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label>Estado</label>
+                        <input type="text" id="profile-estado" name="profile-estado" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label>Municipio / Alcaldía</label>
+                        <input type="text" id="profile-municipio" name="profile-municipio" disabled>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="profile-asentamiento">Colonia / Asentamiento *</label>
+                    <select id="profile-asentamiento" name="profile-asentamiento" required>
+                        <option value="">-- Esperando código postal --</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="profile-calle">Calle *</label>
+                    <input type="text" id="profile-calle" name="profile-calle" required>
+                </div>
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label for="profile-num-ext">Número exterior *</label>
+                        <input type="text" id="profile-num-ext" name="profile-num-ext" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="profile-num-int">Número interior</label>
+                        <input type="text" id="profile-num-int" name="profile-num-int">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>🏠 Información de Vivienda</legend>
+
+                <div class="input-group">
+                    <label for="profile-tipo-vivienda">Tipo de vivienda *</label>
+                    <select id="profile-tipo-vivienda" name="profile-tipo-vivienda" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="casa-jardin">Casa con jardín</option>
+                        <option value="casa-sin-jardin">Casa sin jardín</option>
+                        <option value="departamento-amplio">Departamento amplio</option>
+                        <option value="departamento-pequeno">Departamento pequeño</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-situacion-vivienda">Situación de vivienda *</label>
+                    <select id="profile-situacion-vivienda" name="profile-situacion-vivienda" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="propia">Propia</option>
+                        <option value="alquilada">Alquilada / Rentada</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-contacto-arrendador">
+                        Si es alquilada, nombre y contacto del arrendador (opcional)
+                    </label>
+                    <textarea id="profile-contacto-arrendador" name="profile-contacto-arrendador" rows="2"
+                              placeholder="Nombre, teléfono y/o correo del arrendador"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-espacio-cercado">¿El patio/jardín está completamente cercado/asegurado? *</label>
+                    <select id="profile-espacio-cercado" name="profile-espacio-cercado" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                        <option value="no-aplica">No aplica</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend> 👨‍👩‍👧‍👦 Hogar y Experiencia</legend>
+
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label for="profile-adultos-hogar">Número de personas adultas en el hogar *</label>
+                        <input type="number" id="profile-adultos-hogar" name="profile-adultos-hogar" required min="1" max="20">
+                    </div>
+                    <div class="input-group">
+                        <label for="profile-personas-hogar">Total de personas en el hogar *</label>
+                        <input type="number" id="profile-personas-hogar" name="profile-personas-hogar" required min="1" max="20">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Edad de los niños en el hogar (si aplica)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="profile-ninos-rango" value="0-5"> 0-5 años</label>
+                        <label><input type="checkbox" name="profile-ninos-rango" value="6-12"> 6-12 años</label>
+                        <label><input type="checkbox" name="profile-ninos-rango" value="13+"> 13+ años</label>
+                        <label><input type="checkbox" name="profile-ninos-rango" value="no-hay"> No hay niños</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Otras mascotas en casa actualmente *</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="profile-otras-mascotas" value="perros"> Perros</label>
+                        <label><input type="checkbox" name="profile-otras-mascotas" value="gatos"> Gatos</label>
+                        <label><input type="checkbox" name="profile-otras-mascotas" value="otros"> Otros</label>
+                        <label><input type="checkbox" name="profile-otras-mascotas" value="ninguna"> Ninguna</label>
+                    </div>
+                    <input type="text" id="profile-otras-mascotas-detalle" name="profile-otras-mascotas-detalle"
+                           placeholder="Si marcaste 'Otros', especifica aquí">
+                </div>
+
+                <div class="form-grid-2">
                     <div class="input-group">
                         <label for="profile-experiencia-previa">¿Has tenido mascotas antes? *</label>
                         <select id="profile-experiencia-previa" name="profile-experiencia-previa" required>
@@ -336,33 +385,98 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <label for="profile-horas-fuera">Horas al día fuera de casa *</label>
-                        <select id="profile-horas-fuera" name="profile-horas-fuera" required>
+                        <label for="profile-nivel-experiencia">Nivel de experiencia con mascotas *</label>
+                        <select id="profile-nivel-experiencia" name="profile-nivel-experiencia" required>
                             <option value="">-- Selecciona --</option>
-                            <option value="0-4">0-4 horas</option>
-                            <option value="4-8">4-8 horas</option>
-                            <option value="8-12">8-12 horas</option>
-                            <option value="mas-12">Más de 12 horas</option>
+                            <option value="novato">Novato</option>
+                            <option value="intermedio">Intermedio</option>
+                            <option value="avanzado">Avanzado</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <label for="profile-tiempo-dedicado">¿Tiempo diario para paseos y cuidados? *</label>
-                        <select id="profile-tiempo-dedicado" name="profile-tiempo-dedicado" required>
-                            <option value="">-- Selecciona --</option>
-                            <option value="si">Sí, tengo tiempo disponible</option>
-                            <option value="no">No estoy seguro</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="profile-motivo-adopcion">¿Por qué quieres adoptar? *</label>
-                        <textarea id="profile-motivo-adopcion" name="profile-motivo-adopcion" rows="3" required></textarea>
-                    </div>
-                </fieldset>
+                </div>
 
-                <button type="submit" class="btn">Guardar Perfil Completo</button>
-            </form>
-        </div>
+                <div class="input-group">
+                    <label for="profile-horas-fuera">¿Cuánto tiempo estará sola la mascota al día? *</label>
+                    <select id="profile-horas-fuera" name="profile-horas-fuera" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="menos-4">Menos de 4 horas</option>
+                        <option value="4-8">4-8 horas</option>
+                        <option value="mas-8">Más de 8 horas</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend> 🐾 Compromiso y Estilo de Vida</legend>
+
+                <div class="input-group">
+                    <label for="profile-nivel-actividad">Nivel de actividad que buscas en la mascota *</label>
+                    <select id="profile-nivel-actividad" name="profile-nivel-actividad" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="bajo">Bajo / De sofá</option>
+                        <option value="medio">Medio / Caminatas diarias</option>
+                        <option value="alto">Alto / Mucho ejercicio</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-gastos-vet">¿Comprendes y aceptas el gasto de atención veterinaria (incluyendo emergencias)? *</label>
+                    <select id="profile-gastos-vet" name="profile-gastos-vet" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-compromiso-esterilizacion">Compromiso de esterilización/castración (si la mascota no lo está) *</label>
+                    <select id="profile-compromiso-esterilizacion" name="profile-compromiso-esterilizacion" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-tiempo-dedicado">¿Tiempo diario disponible para paseos y cuidados? *</label>
+                    <select id="profile-tiempo-dedicado" name="profile-tiempo-dedicado" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="menos-1h">Menos de 1 hora</option>
+                        <option value="1-2h">1 a 2 horas</option>
+                        <option value="mas-2h">Más de 2 horas</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-motivo-adopcion">¿Por qué quieres adoptar? *</label>
+                    <textarea id="profile-motivo-adopcion" name="profile-motivo-adopcion" rows="3" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="profile-que-haria-cambios">
+                        ¿Qué harías con la mascota si tus circunstancias cambian (mudanza, bebé, etc.)? *
+                    </label>
+                    <textarea id="profile-que-haria-cambios" name="profile-que-haria-cambios" rows="3" required></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend> 🩺 Referencias (Opcional)</legend>
+                <div class="input-group">
+                    <label for="profile-veterinario">
+                        Nombre y contacto de tu veterinario actual/anterior
+                        <span style="font-weight: normal;">(Nombre, clínica, teléfono)</span>
+                    </label>
+                    <textarea id="profile-veterinario" name="profile-veterinario" rows="2"
+                              placeholder="Ej: Dr. Pérez, Clínica Patitas Felices, 55-1234-5678"></textarea>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn">Guardar Perfil Completo</button>
+        </form>
     </div>
+</div>
+
 
     <div id="modal-pet-details" class="modal hidden">
         <div class="modal-content medium-modal">

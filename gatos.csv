@@ -1,0 +1,21 @@
+id_mascota,nombre,especie,edad,raza,tamaño,color_pelo,color_pelo_secundario,tipo_pelo,comportamiento,convive_con_otros_animales,padecimientos,tratamiento_padecimiento,vacunas,sexo,senias_particulares,url_foto
+1,Misha,gato,3,Siames,chico,crema,negro,corto,tranquila,si,dermatitis,baño medicado mensual,rabia;triple felina,hembra,ojos muy claros,https://misfotos.com/gatos/misha.jpg
+2,Coco,gato,2,Mestizo,chico,negro,,corto,independiente,si,ninguno,ninguno,triple felina,macho,cola delgada,https://misfotos.com/gatos/coco.jpg
+3,Bola_de_Nieve,gato,4,Persa,mediano,blanco,,largo,tranquilo,no,problemas respiratorios,limpieza nasal diaria,rabia;leucemia felina,macho,cara chata,https://misfotos.com/gatos/bola.jpg
+4,Kiara,gato,5,Ragdoll,mediano,crema,gris,largo,afectuosa,si,calculos urinarios,alimento urinario,triple felina,hembra,ojos azules,https://misfotos.com/gatos/kiara.jpg
+5,Tiger,gato,1,Mestizo,chico,atigrado,,corto,juguetón,si,ninguno,ninguno,triple felina,macho,líneas negras en la frente,https://misfotos.com/gatos/tiger.jpg
+6,Salem,gato,6,Bombay,mediano,negro,,corto,tranquilo,no,dermatitis,crema tópica,rabia,macho,ojos amarillos intensos,https://misfotos.com/gatos/salem.jpg
+7,Lola,gato,2,Bengalí,mediano,dorado,negro,corto,activa,si,ninguno,ninguno,triple felina,hembra,manchas tipo leopardo,https://misfotos.com/gatos/lola.jpg
+8,Chispa,gato,7,Mestizo,chico,gris,,medio,asustadizo,no,problemas dentales,limpieza dental anual,rabia,macho,cola corta,https://misfotos.com/gatos/chispa.jpg
+9,Nube,gato,4,Angora,grande,blanco,,largo,curiosa,si,bolas de pelo,cepillado diario,rabia;triple felina,hembra,pelaje esponjado,https://misfotos.com/gatos/nube.jpg
+10,Simba,gato,3,Maine Coon,grande,café,negro,largo,juguetón,si,ninguno,ninguno,rabia;triple felina,macho,bigotes largos,https://misfotos.com/gatos/simba.jpg
+11,Moka,gato,2,Siames,chico,crema,negro,corto,curiosa,si,ninguno,ninguno,triple felina,hembra,cola larga,https://misfotos.com/gatos/moka.jpg
+12,Shadow,gato,5,Mestizo,mediano,negro,,corto,tranquilo,no,problemas renales,dieta especial,rabia,macho,ojos verdes,https://misfotos.com/gatos/shadow.jpg
+13,Benji,gato,3,Persa,mediano,gris,,largo,tranquilo,si,dermatitis,limpieza diaria,rabia;leucemia felina,macho,cara aplanada,https://misfotos.com/gatos/benji.jpg
+14,Rubi,gato,1,Mestizo,chico,blanco,gris,medio,juguetona,si,ninguno,ninguno,triple felina,hembra,cola suave,https://misfotos.com/gatos/rubi.jpg
+15,Oreo,gato,4,Bicolor,mediano,negro,blanco,corto,afectuoso,si,ninguno,ninguno,rabia;triple felina,macho,mancha negra en nariz,https://misfotos.com/gatos/oreo.jpg
+16,Mina,gato,6,Mestizo,mediano,café,negro,corto,independiente,no,problemas oculares,gotas diarias,rabia,hembra,ojos grandes,https://misfotos.com/gatos/mina.jpg
+17,Tom,gato,2,Azul Ruso,mediano,gris,,corto,tranquilo,si,ninguno,ninguno,triple felina,macho,pelo suave,https://misfotos.com/gatos/tom.jpg
+18,Perla,gato,5,Angora,chico,blanco,,largo,curiosa,si,bolas de pelo,cepillado diario,rabia;triple felina,hembra,pelaje largo,https://misfotos.com/gatos/perla.jpg
+19,Gizmo,gato,3,Mestizo,chico,café,,corto,juguetón,si,ninguno,ninguno,triple felina,macho,cicatriz oreja,https://misfotos.com/gatos/gizmo.jpg
+20,Nina,gato,4,Calicó,chico,blanco,naranja,corto,asustadiza,no,ninguno,ninguno,triple felina,hembra,manchas tricolor,https://misfotos.com/gatos/nina.jpg

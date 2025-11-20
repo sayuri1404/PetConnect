@@ -669,54 +669,92 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'senior';
     }
 
-    function calculateCompatibility(pet, userProfile) {
-        let score = 0;
-        const reasons = [];
+function calculateCompatibility(pet, userProfile) {
+    let score = 0;
+    const reasons = [];
 
-        // Energía vs Tiempo
-        if (userProfile['tiempo-dedicado'] === 'si' && pet.energy === 'alto') {
-            score += 30;
-            reasons.push('Nivel de energía compatible');
-        } else if (userProfile['horas-fuera'] === '0-4' && pet.energy === 'bajo') {
-            score += 30;
-            reasons.push('Perfecto para tu rutina');
-        } else if (userProfile['tiempo-dedicado'] === 'si' && pet.energy === 'medio') {
-            score += 20;
-        }
-
-        // Tamaño vs Vivienda
-        if (userProfile['tipo-vivienda'] === 'casa-patio' && (pet.size === 'grande' || pet.size === 'mediano')) {
-            score += 25;
-            reasons.push('Espacio adecuado para su tamaño');
-        } else if (userProfile['tipo-vivienda'] === 'departamento' && pet.size === 'pequeño') {
-            score += 25;
-            reasons.push('Ideal para departamento');
-        } else if (userProfile['tipo-vivienda'] === 'casa-sin-patio' && (pet.size === 'pequeño' || pet.size === 'mediano')) {
-            score += 15;
-        }
-
-        // Experiencia
-        if (userProfile['experiencia-previa'] === 'si') {
-            score += 20;
-            reasons.push('Tu experiencia es una ventaja');
-        } else {
-             score += 5; // No tener experiencia no es malo, solo menos ventaja
-        }
-
-        // Niños
-        if (userProfile['ninos'] === 'si' && pet.behavior.toLowerCase().includes('niños')) {
-            score += 25;
-            reasons.push('Excelente con niños');
-        }
-        
-        // Otras Mascotas
-        if (userProfile['otras-mascotas'] === 'si' && pet.behavior.toLowerCase().includes('otras mascotas')) {
-            score += 20;
-            reasons.push('Se lleva bien con otras mascotas');
-        }
-
-        return { score: Math.min(score, 100), reasons: reasons.length > 0 ? reasons : ['Buena compatibilidad general'] };
+    // --------------------------
+    // Energía vs tiempo disponible
+    // --------------------------
+    if (userProfile.tiempo_dedicado === 'mas-2h' && pet.energy === 'alto') {
+        score += 30;
+        reasons.push('Tienes tiempo para una mascota muy activa');
+    } else if (userProfile.tiempo_dedicado === '1-2h' && (pet.energy === 'medio' || pet.energy === 'bajo')) {
+        score += 20;
+        reasons.push('Tu tiempo disponible encaja con una mascota de energía media');
+    } else if (userProfile.tiempo_dedicado === 'menos-1h' && pet.energy === 'bajo') {
+        score += 15;
+        reasons.push('Mascota tranquila para poco tiempo disponible');
     }
+
+    // --------------------------
+    // Horas fuera de casa
+    // --------------------------
+    if (userProfile.horas_fuera === 'menos-4' && pet.energy === 'bajo') {
+        score += 20;
+        reasons.push('Mascota tranquila y poco tiempo fuera de casa');
+    } else if (userProfile.horas_fuera === '4-8' && (pet.energy === 'medio' || pet.energy === 'alto')) {
+        score += 15;
+        reasons.push('Tu rutina es compatible con una mascota activa');
+    }
+
+    // --------------------------
+    // Tipo de vivienda vs tamaño
+    // --------------------------
+    if (userProfile.tipo_vivienda === 'casa-jardin' && (pet.size === 'grande' || pet.size === 'mediano')) {
+        score += 25;
+        reasons.push('Cuentas con espacio adecuado para su tamaño');
+    } else if (
+        (userProfile.tipo_vivienda === 'departamento-pequeno' || userProfile.tipo_vivienda === 'departamento-amplio')
+        && pet.size === 'pequeño'
+    ) {
+        score += 25;
+        reasons.push('Ideal para departamento');
+    } else if (userProfile.tipo_vivienda === 'casa-sin-jardin' && (pet.size === 'pequeño' || pet.size === 'mediano')) {
+        score += 15;
+        reasons.push('El tamaño de la mascota es adecuado para tu hogar');
+    }
+
+    // --------------------------
+    // Experiencia
+    // --------------------------
+    if (userProfile.experiencia_previa === 'si') {
+        score += 15;
+        reasons.push('Tu experiencia previa es una ventaja');
+    } else {
+        score += 5; // No tener experiencia no es malo, solo menos ventaja
+    }
+
+    // --------------------------
+    // Niños en casa
+    // --------------------------
+    const hayNinos = Array.isArray(userProfile.ninos_rango) &&
+                     userProfile.ninos_rango.length > 0 &&
+                     !userProfile.ninos_rango.includes('no-hay');
+
+    if (hayNinos && pet.behavior.toLowerCase().includes('niños')) {
+        score += 20;
+        reasons.push('Compatible con hogares con niñas y niños');
+    }
+
+    // --------------------------
+    // Otras mascotas
+    // --------------------------
+    const tieneMascotas = Array.isArray(userProfile.otras_mascotas) &&
+                          userProfile.otras_mascotas.length > 0 &&
+                          !userProfile.otras_mascotas.includes('ninguna');
+
+    if (tieneMascotas && pet.behavior.toLowerCase().includes('otras mascotas')) {
+        score += 15;
+        reasons.push('Se lleva bien con otras mascotas');
+    }
+
+    return {
+        score: Math.min(score, 100),
+        reasons: reasons.length > 0 ? reasons : ['Buena compatibilidad general']
+    };
+}
+
 
     function getStatusText(status) {
         const texts = {
@@ -757,36 +795,70 @@ document.addEventListener('DOMContentLoaded', () => {
         showAdoptanteTab('perfil-adoptante');
     }
 
-    function displayAdoptanteProfile() {
-        const profile = currentUser.profileData;
-        if (!profile) return;
+function displayAdoptanteProfile() {
+    const profile = currentUser.profileData;
+    if (!profile) return;
 
-        const profileDisplay = document.getElementById('profile-display');
-        profileDisplay.innerHTML = `
-            <div class="profile-section">
-                <h3>📍 Dirección</h3>
-                <div class="profile-item"><span class="profile-label">Código Postal:</span><span class="profile-value">${profile.cp}</span></div>
-                <div class="profile-item"><span class="profile-label">Estado:</span><span class="profile-value">${profile.estado}</span></div>
-                <div class="profile-item"><span class="profile-label">Municipio:</span><span class="profile-value">${profile.municipio}</span></div>
-                <div class="profile-item"><span class="profile-label">Colonia:</span><span class="profile-value">${profile.asentamiento}</span></div>
-                <div class="profile-item"><span class="profile-label">Calle:</span><span class="profile-value">${profile.calle} ${profile.num_ext}${profile.num_int ? ' Int. ' + profile.num_int : ''}</span></div>
-            </div>
-            <div class="profile-section">
-                <h3>👤 Información Personal</h3>
-                <div class="profile-item"><span class="profile-label">Edad:</span><span class="profile-value">${profile.edad} años</span></div>
-                <div class="profile-item"><span class="profile-label">Ocupación:</span><span class="profile-value">${profile.ocupacion}</span></div>
-                <div class="profile-item"><span class="profile-label">Ingresos:</span><span class="profile-value">${profile.ingresos}</span></div>
-            </div>
-            <div class="profile-section">
-                <h3>🏠 Hogar</h3>
-                <div class="profile-item"><span class="profile-label">Tipo de vivienda:</span><span class="profile-value">${profile['tipo-vivienda']}</span></div>
-                <div class="profile-item"><span class="profile-label">Personas en casa:</span><span class="profile-value">${profile['personas-hogar']}</span></div>
-                <div class="profile-item"><span class="profile-label">Niños:</span><span class="profile-value">${profile.ninos === 'si' ? 'Sí' : 'No'}</span></div>
-                <div class="profile-item"><span class="profile-label">Otras mascotas:</span><span class="profile-value">${profile['otras-mascotas'] === 'si' ? 'Sí' : 'No'}</span></div>
-            </div>
-            <button class="btn btn-secondary mt-20" onclick="editProfile()" style="width: auto;">Editar Perfil</button>
-        `;
-    }
+    const profileDisplay = document.getElementById('profile-display');
+
+    const ninosTexto = (Array.isArray(profile.ninos_rango) && profile.ninos_rango.length > 0)
+        ? profile.ninos_rango.join(', ')
+        : 'No especificado';
+
+    const otrasMascotasTexto = (Array.isArray(profile.otras_mascotas) && profile.otras_mascotas.length > 0)
+        ? profile.otras_mascotas.join(', ') + (profile.otras_mascotas_detalle ? ` (${profile.otras_mascotas_detalle})` : '')
+        : 'No especificado';
+
+    profileDisplay.innerHTML = `
+        <div class="profile-section">
+            <h3>👤 Información Personal</h3>
+            <div class="profile-item"><span class="profile-label">Nombre:</span><span class="profile-value">${profile.nombre}</span></div>
+            <div class="profile-item"><span class="profile-label">Edad:</span><span class="profile-value">${profile.edad} años</span></div>
+            <div class="profile-item"><span class="profile-label">Teléfono móvil:</span><span class="profile-value">${profile.tel_movil}</span></div>
+            ${profile.tel_fijo ? `<div class="profile-item"><span class="profile-label">Teléfono fijo:</span><span class="profile-value">${profile.tel_fijo}</span></div>` : ''}
+            <div class="profile-item"><span class="profile-label">Correo:</span><span class="profile-value">${profile.email}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>📍 Dirección</h3>
+            <div class="profile-item"><span class="profile-label">Código Postal:</span><span class="profile-value">${profile.cp}</span></div>
+            <div class="profile-item"><span class="profile-label">Estado:</span><span class="profile-value">${profile.estado}</span></div>
+            <div class="profile-item"><span class="profile-label">Municipio:</span><span class="profile-value">${profile.municipio}</span></div>
+            <div class="profile-item"><span class="profile-label">Colonia:</span><span class="profile-value">${profile.asentamiento}</span></div>
+            <div class="profile-item"><span class="profile-label">Calle:</span><span class="profile-value">${profile.calle} ${profile.num_ext}${profile.num_int ? ' Int. ' + profile.num_int : ''}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>🏠 Hogar y Vivienda</h3>
+            <div class="profile-item"><span class="profile-label">Tipo de vivienda:</span><span class="profile-value">${profile.tipo_vivienda}</span></div>
+            <div class="profile-item"><span class="profile-label">Situación de vivienda:</span><span class="profile-value">${profile.situacion_vivienda}</span></div>
+            <div class="profile-item"><span class="profile-label">Espacio cercado:</span><span class="profile-value">${profile.espacio_cercado}</span></div>
+            <div class="profile-item"><span class="profile-label">Adultos en el hogar:</span><span class="profile-value">${profile.adultos_hogar}</span></div>
+            <div class="profile-item"><span class="profile-label">Personas en el hogar:</span><span class="profile-value">${profile.personas_hogar}</span></div>
+            <div class="profile-item"><span class="profile-label">Niños en el hogar:</span><span class="profile-value">${ninosTexto}</span></div>
+            <div class="profile-item"><span class="profile-label">Otras mascotas:</span><span class="profile-value">${otrasMascotasTexto}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>🐾 Estilo de Vida y Compromiso</h3>
+            <div class="profile-item"><span class="profile-label">Experiencia con mascotas:</span><span class="profile-value">${profile.experiencia_previa === 'si' ? 'Sí' : 'No'} (${profile.nivel_experiencia})</span></div>
+            <div class="profile-item"><span class="profile-label">Horas fuera de casa:</span><span class="profile-value">${profile.horas_fuera}</span></div>
+            <div class="profile-item"><span class="profile-label">Nivel de actividad buscado:</span><span class="profile-value">${profile.nivel_actividad}</span></div>
+            <div class="profile-item"><span class="profile-label">Tiempo diario disponible:</span><span class="profile-value">${profile.tiempo_dedicado}</span></div>
+            <div class="profile-item"><span class="profile-label">Acepta gastos veterinarios:</span><span class="profile-value">${profile.gastos_vet === 'si' ? 'Sí' : 'No'}</span></div>
+            <div class="profile-item"><span class="profile-label">Compromiso de esterilización:</span><span class="profile-value">${profile.compromiso_esterilizacion === 'si' ? 'Sí' : 'No'}</span></div>
+            <div class="profile-item"><span class="profile-label">Motivo de adopción:</span><span class="profile-value">${profile.motivo_adopcion}</span></div>
+            <div class="profile-item"><span class="profile-label">Si tus circunstancias cambian:</span><span class="profile-value">${profile.que_haria_cambios}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>🩺 Referencia Veterinaria</h3>
+            <div class="profile-item"><span class="profile-label">Veterinario:</span><span class="profile-value">${profile.veterinario || 'No especificado'}</span></div>
+        </div>
+
+        <button class="btn btn-secondary mt-20" onclick="editProfile()" style="width: auto;">Editar Perfil</button>
+    `;
+}
 
     function renderPetsGrid(filters = {}) {
         const grid = document.getElementById('pets-grid');
@@ -1212,52 +1284,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
 
-    window.viewAdoptanteProfile = function(requestId) {
-        const request = adoptionRequests.find(r => r.id === requestId);
-        if (!request) return;
+window.viewAdoptanteProfile = function(requestId) {
+    const request = adoptionRequests.find(r => r.id === requestId);
+    if (!request) return;
 
-        const profile = request.adoptanteProfile;
-        const content = document.getElementById('adoptante-profile-content');
+    const profile = request.adoptanteProfile;
+    const content = document.getElementById('adoptante-profile-content');
 
-        content.innerHTML = `
-            <h2>Perfil de ${request.adoptanteName}</h2>
-            <div class="profile-section">
-                <h3>Contacto</h3>
-                <div class="profile-item"><span class="profile-label">Email:</span><span class="profile-value">${request.adoptanteEmail}</span></div>
-                <div class="profile-item"><span class="profile-label">Teléfono:</span><span class="profile-value">${request.adoptantePhone}</span></div>
-            </div>
-            <div class="profile-section">
-                <h3>📍 Dirección</h3>
-                <div class="profile-item"><span class="profile-label">Código Postal:</span><span class="profile-value">${profile.cp}</span></div>
-                <div class="profile-item"><span class="profile-label">Estado:</span><span class="profile-value">${profile.estado}</span></div>
-                <div class="profile-item"><span class="profile-label">Municipio:</span><span class="profile-value">${profile.municipio}</span></div>
-                <div class="profile-item"><span class="profile-label">Colonia:</span><span class="profile-value">${profile.asentamiento}</span></div>
-                <div class="profile-item"><span class="profile-label">Calle:</span><span class="profile-value">${profile.calle} ${profile.num_ext}${profile.num_int ? ' Int. ' + profile.num_int : ''}</span></div>
-            </div>
-            <div class="profile-section">
-                <h3>👤 Información Personal</h3>
-                <div class="profile-item"><span class="profile-label">Edad:</span><span class="profile-value">${profile.edad} años</span></div>
-                <div class="profile-item"><span class="profile-label">Ocupación:</span><span class="profile-value">${profile.ocupacion}</span></div>
-                <div class="profile-item"><span class="profile-label">Ingresos:</span><span class="profile-value">${profile.ingresos}</span></div>
-            </div>
-            <div class="profile-section">
-                <h3>🏠 Hogar</h3>
-                <div class="profile-item"><span class="profile-label">Tipo de vivienda:</span><span class="profile-value">${profile['tipo-vivienda']}</span></div>
-                <div class="profile-item"><span class="profile-label">Personas en casa:</span><span class="profile-value">${profile['personas-hogar']}</span></div>
-                <div class="profile-item"><span class="profile-label">Niños:</span><span class="profile-value">${profile.ninos === 'si' ? 'Sí' : 'No'}</span></div>
-                <div class="profile-item"><span class="profile-label">Otras mascotas:</span><span class="profile-value">${profile['otras-mascotas'] === 'si' ? 'Sí' : 'No'}</span></div>
-            </div>
-             <div class="profile-section">
-                <h3>📋 Cuestionario</h3>
-                <div class="profile-item"><span class="profile-label">Experiencia previa:</span><span class="profile-value">${profile['experiencia-previa'] === 'si' ? 'Sí' : 'No'}</span></div>
-                <div class="profile-item"><span class="profile-label">Horas fuera de casa:</span><span class="profile-value">${profile['horas-fuera']}</span></div>
-                <div class="profile-item"><span class="profile-label">Tiempo para ejercicio:</span><span class="profile-value">${profile['tiempo-dedicado'] === 'si' ? 'Sí' : 'No'}</span></div>
-                <div class="profile-item"><span class="profile-label">Motivo adopción:</span><span class="profile-value">${profile['motivo-adopcion']}</span></div>
-            </div>
-        `;
-        
-        showModal('modal-adoptante-profile');
-    };
+    const ninosTexto = (Array.isArray(profile.ninos_rango) && profile.ninos_rango.length > 0)
+        ? profile.ninos_rango.join(', ')
+        : 'No especificado';
+
+    const otrasMascotasTexto = (Array.isArray(profile.otras_mascotas) && profile.otras_mascotas.length > 0)
+        ? profile.otras_mascotas.join(', ') + (profile.otras_mascotas_detalle ? ` (${profile.otras_mascotas_detalle})` : '')
+        : 'No especificado';
+
+    content.innerHTML = `
+        <h2>Perfil de ${request.adoptanteName}</h2>
+
+        <div class="profile-section">
+            <h3>Contacto</h3>
+            <div class="profile-item"><span class="profile-label">Nombre:</span><span class="profile-value">${profile.nombre}</span></div>
+            <div class="profile-item"><span class="profile-label">Email:</span><span class="profile-value">${request.adoptanteEmail}</span></div>
+            <div class="profile-item"><span class="profile-label">Teléfono:</span><span class="profile-value">${request.adoptantePhone}</span></div>
+            <div class="profile-item"><span class="profile-label">Teléfono móvil (perfil):</span><span class="profile-value">${profile.tel_movil}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>📍 Dirección</h3>
+            <div class="profile-item"><span class="profile-label">Código Postal:</span><span class="profile-value">${profile.cp}</span></div>
+            <div class="profile-item"><span class="profile-label">Estado:</span><span class="profile-value">${profile.estado}</span></div>
+            <div class="profile-item"><span class="profile-label">Municipio:</span><span class="profile-value">${profile.municipio}</span></div>
+            <div class="profile-item"><span class="profile-label">Colonia:</span><span class="profile-value">${profile.asentamiento}</span></div>
+            <div class="profile-item"><span class="profile-label">Calle:</span><span class="profile-value">${profile.calle} ${profile.num_ext}${profile.num_int ? ' Int. ' + profile.num_int : ''}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>🏠 Hogar y Vivienda</h3>
+            <div class="profile-item"><span class="profile-label">Tipo de vivienda:</span><span class="profile-value">${profile.tipo_vivienda}</span></div>
+            <div class="profile-item"><span class="profile-label">Situación de vivienda:</span><span class="profile-value">${profile.situacion_vivienda}</span></div>
+            <div class="profile-item"><span class="profile-label">Espacio cercado:</span><span class="profile-value">${profile.espacio_cercado}</span></div>
+            <div class="profile-item"><span class="profile-label">Adultos en el hogar:</span><span class="profile-value">${profile.adultos_hogar}</span></div>
+            <div class="profile-item"><span class="profile-label">Personas en el hogar:</span><span class="profile-value">${profile.personas_hogar}</span></div>
+            <div class="profile-item"><span class="profile-label">Niños en el hogar:</span><span class="profile-value">${ninosTexto}</span></div>
+            <div class="profile-item"><span class="profile-label">Otras mascotas:</span><span class="profile-value">${otrasMascotasTexto}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>🐾 Estilo de Vida y Compromiso</h3>
+            <div class="profile-item"><span class="profile-label">Experiencia con mascotas:</span><span class="profile-value">${profile.experiencia_previa === 'si' ? 'Sí' : 'No'} (${profile.nivel_experiencia})</span></div>
+            <div class="profile-item"><span class="profile-label">Horas fuera de casa:</span><span class="profile-value">${profile.horas_fuera}</span></div>
+            <div class="profile-item"><span class="profile-label">Nivel de actividad buscado:</span><span class="profile-value">${profile.nivel_actividad}</span></div>
+            <div class="profile-item"><span class="profile-label">Tiempo disponible diario:</span><span class="profile-value">${profile.tiempo_dedicado}</span></div>
+            <div class="profile-item"><span class="profile-label">Acepta gastos veterinarios:</span><span class="profile-value">${profile.gastos_vet === 'si' ? 'Sí' : 'No'}</span></div>
+            <div class="profile-item"><span class="profile-label">Compromiso de esterilización:</span><span class="profile-value">${profile.compromiso_esterilizacion === 'si' ? 'Sí' : 'No'}</span></div>
+            <div class="profile-item"><span class="profile-label">Motivo adopción:</span><span class="profile-value">${profile.motivo_adopcion}</span></div>
+            <div class="profile-item"><span class="profile-label">Si sus circunstancias cambian:</span><span class="profile-value">${profile.que_haria_cambios}</span></div>
+        </div>
+
+        <div class="profile-section">
+            <h3>🩺 Referencia Veterinaria</h3>
+            <div class="profile-item"><span class="profile-label">Veterinario:</span><span class="profile-value">${profile.veterinario || 'No especificado'}</span></div>
+        </div>
+    `;
+    
+    showModal('modal-adoptante-profile');
+};
 
     window.approveRequest = function(requestId) {
         if (confirm('¿Aprobar esta solicitud? Te comprometes a contactar al adoptante.')) {
@@ -1458,55 +1550,90 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.editProfile = function() {
-        const form = document.getElementById('profile-form');
-        if (currentUser.profileComplete) {
-            const profile = currentUser.profileData;
-            form['profile-cp'].value = profile.cp;
-            form['profile-estado'].value = profile.estado;
-            form['profile-municipio'].value = profile.municipio;
-            
-            // Poblar asentamientos y seleccionar el correcto
-            const data = dataCodigos[profile.cp];
-            const asentamientoSelect = document.getElementById('profile-asentamiento');
-            asentamientoSelect.innerHTML = '<option value="">Selecciona una colonia</option>';
-            if (data) {
-                data.forEach(item => {
-                    const option = document.createElement('option');
-                    option.value = item.asentamiento;
-                    option.textContent = `${item.asentamiento} (${item.tipo_asentamiento})`;
-                    asentamientoSelect.appendChild(option);
-                });
-            }
-            form['profile-asentamiento'].value = profile.asentamiento;
-            
-            form['profile-calle'].value = profile.calle;
-            form['profile-num-ext'].value = profile.num_ext;
-            form['profile-num-int'].value = profile.num_int || '';
-            
-            form['profile-edad'].value = profile.edad;
-            form['profile-ocupacion'].value = profile.ocupacion;
-            form['profile-ingresos'].value = profile.ingresos;
-            
-            form['profile-tipo-vivienda'].value = profile['tipo-vivienda'];
-            form['profile-personas-hogar'].value = profile['personas-hogar'];
-            form['profile-ninos'].value = profile.ninos;
-            form['profile-otras-mascotas'].value = profile['otras-mascotas'];
-            
-            form['profile-experiencia-previa'].value = profile['experiencia-previa'];
-            form['profile-horas-fuera'].value = profile['horas-fuera'];
-            form['profile-tiempo-dedicado'].value = profile['tiempo-dedicado'];
-            form['profile-motivo-adopcion'].value = profile['motivo-adopcion'];
-            
-        } else {
-            form.reset();
-            // Limpiar campos deshabilitados
-            document.getElementById('profile-estado').value = '';
-            document.getElementById('profile-municipio').value = '';
-            document.getElementById('profile-asentamiento').innerHTML = '<option value="">-- Esperando código postal --</option>';
+window.editProfile = function() {
+    const form = document.getElementById('profile-form');
+    form.reset();
+
+    // Limpiar campos deshabilitados de dirección
+    document.getElementById('profile-estado').value = '';
+    document.getElementById('profile-municipio').value = '';
+    document.getElementById('profile-asentamiento').innerHTML = '<option value="">-- Esperando código postal --</option>';
+
+    if (currentUser.profileComplete && currentUser.profileData) {
+        const profile = currentUser.profileData;
+
+        // Dirección
+        form['profile-cp'].value = profile.cp;
+
+        const data = dataCodigos[profile.cp];
+        const asentamientoSelect = document.getElementById('profile-asentamiento');
+        asentamientoSelect.innerHTML = '<option value="">Selecciona una colonia</option>';
+        if (data) {
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.asentamiento;
+                option.textContent = `${item.asentamiento} (${item.tipo_asentamiento})`;
+                asentamientoSelect.appendChild(option);
+            });
         }
-        showModal('modal-profile');
-    };
+
+        document.getElementById('profile-estado').value = profile.estado || '';
+        document.getElementById('profile-municipio').value = profile.municipio || '';
+        form['profile-asentamiento'].value = profile.asentamiento;
+        form['profile-calle'].value = profile.calle;
+        form['profile-num-ext'].value = profile.num_ext;
+        form['profile-num-int'].value = profile.num_int || '';
+
+        // I. Personal
+        form['profile-nombre'].value = profile.nombre || '';
+        form['profile-edad'].value = profile.edad || '';
+        form['profile-tel-movil'].value = profile.tel_movil || '';
+        form['profile-tel-fijo'].value = profile.tel_fijo || '';
+        form['profile-email'].value = profile.email || '';
+
+        // II. Vivienda
+        form['profile-tipo-vivienda'].value = profile.tipo_vivienda || '';
+        form['profile-situacion-vivienda'].value = profile.situacion_vivienda || '';
+        form['profile-contacto-arrendador'].value = profile.contacto_arrendador || '';
+        form['profile-espacio-cercado'].value = profile.espacio_cercado || '';
+
+        // III. Hogar y experiencia
+        form['profile-adultos-hogar'].value = profile.adultos_hogar || '';
+        form['profile-personas-hogar'].value = profile.personas_hogar || '';
+
+        // Niños (checkboxes)
+        if (Array.isArray(profile.ninos_rango)) {
+            form.querySelectorAll('input[name="profile-ninos-rango"]').forEach(ch => {
+                ch.checked = profile.ninos_rango.includes(ch.value);
+            });
+        }
+
+        // Otras mascotas (checkboxes)
+        if (Array.isArray(profile.otras_mascotas)) {
+            form.querySelectorAll('input[name="profile-otras-mascotas"]').forEach(ch => {
+                ch.checked = profile.otras_mascotas.includes(ch.value);
+            });
+        }
+        form['profile-otras-mascotas-detalle'].value = profile.otras_mascotas_detalle || '';
+
+        form['profile-experiencia-previa'].value = profile.experiencia_previa || '';
+        form['profile-nivel-experiencia'].value = profile.nivel_experiencia || '';
+        form['profile-horas-fuera'].value = profile.horas_fuera || '';
+
+        // IV. Compromiso
+        form['profile-nivel-actividad'].value = profile.nivel_actividad || '';
+        form['profile-gastos-vet'].value = profile.gastos_vet || '';
+        form['profile-compromiso-esterilizacion'].value = profile.compromiso_esterilizacion || '';
+        form['profile-tiempo-dedicado'].value = profile.tiempo_dedicado || '';
+        form['profile-motivo-adopcion'].value = profile.motivo_adopcion || '';
+        form['profile-que-haria-cambios'].value = profile.que_haria_cambios || '';
+
+        // V. Referencias
+        form['profile-veterinario'].value = profile.veterinario || '';
+    }
+
+    showModal('modal-profile');
+};
 
     window.showAddPetModal = function() {
         const form = document.getElementById('pet-form');
@@ -1644,48 +1771,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.getElementById('profile-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const profileData = {
-            cp: formData.get('profile-cp'),
-            estado: formData.get('profile-estado'),
-            municipio: formData.get('profile-municipio'),
-            asentamiento: formData.get('profile-asentamiento'),
-            calle: formData.get('profile-calle'),
-            num_ext: formData.get('profile-num-ext'),
-            num_int: formData.get('profile-num-int'),
-            
-            edad: formData.get('profile-edad'),
-            ocupacion: formData.get('profile-ocupacion'),
-            ingresos: formData.get('profile-ingresos'),
-            
-            'tipo-vivienda': formData.get('profile-tipo-vivienda'),
-            'personas-hogar': formData.get('profile-personas-hogar'),
-            ninos: formData.get('profile-ninos'),
-            'otras-mascotas': formData.get('profile-otras-mascotas'),
-            
-            'experiencia-previa': formData.get('profile-experiencia-previa'),
-            'horas-fuera': formData.get('profile-horas-fuera'),
-            'tiempo-dedicado': formData.get('profile-tiempo-dedicado'),
-            'motivo-adopcion': formData.get('profile-motivo-adopcion')
-        };
-        
-        // Validación simple
-        for(let key in profileData) {
-            if(!profileData[key] && key !== 'num_int') { // num_int es opcional
-                alert(`Por favor, completa el campo: ${key}`);
-                return;
-            }
+document.getElementById('profile-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const profileData = {
+        // Dirección
+        cp: formData.get('profile-cp'),
+        estado: formData.get('profile-estado'),
+        municipio: formData.get('profile-municipio'),
+        asentamiento: formData.get('profile-asentamiento'),
+        calle: formData.get('profile-calle'),
+        num_ext: formData.get('profile-num-ext'),
+        num_int: formData.get('profile-num-int') || '',
+
+        // I. Información personal y contacto
+        nombre: formData.get('profile-nombre'),
+        edad: formData.get('profile-edad'),
+        tel_movil: formData.get('profile-tel-movil'),
+        tel_fijo: formData.get('profile-tel-fijo') || '',
+        email: formData.get('profile-email'),
+
+        // II. Vivienda
+        tipo_vivienda: formData.get('profile-tipo-vivienda'),
+        situacion_vivienda: formData.get('profile-situacion-vivienda'),
+        contacto_arrendador: formData.get('profile-contacto-arrendador') || '',
+        espacio_cercado: formData.get('profile-espacio-cercado'),
+
+        // III. Hogar y experiencia
+        adultos_hogar: formData.get('profile-adultos-hogar'),
+        personas_hogar: formData.get('profile-personas-hogar'),
+        ninos_rango: [...form.querySelectorAll('input[name="profile-ninos-rango"]:checked')].map(ch => ch.value),
+        otras_mascotas: [...form.querySelectorAll('input[name="profile-otras-mascotas"]:checked')].map(ch => ch.value),
+        otras_mascotas_detalle: formData.get('profile-otras-mascotas-detalle') || '',
+        experiencia_previa: formData.get('profile-experiencia-previa'),
+        nivel_experiencia: formData.get('profile-nivel-experiencia'),
+        horas_fuera: formData.get('profile-horas-fuera'),
+
+        // IV. Compromiso y estilo de vida
+        nivel_actividad: formData.get('profile-nivel-actividad'),
+        gastos_vet: formData.get('profile-gastos-vet'),
+        compromiso_esterilizacion: formData.get('profile-compromiso-esterilizacion'),
+        tiempo_dedicado: formData.get('profile-tiempo-dedicado'),
+        motivo_adopcion: formData.get('profile-motivo-adopcion'),
+        que_haria_cambios: formData.get('profile-que-haria-cambios'),
+
+        // V. Referencia
+        veterinario: formData.get('profile-veterinario') || ''
+    };
+
+    // Validación básica de campos obligatorios
+    const requiredKeys = [
+        'cp','asentamiento','calle','num_ext','nombre','edad',
+        'tel_movil','email','tipo_vivienda','situacion_vivienda',
+        'espacio_cercado','adultos_hogar','personas_hogar',
+        'experiencia_previa','nivel_experiencia','horas_fuera',
+        'nivel_actividad','gastos_vet','compromiso_esterilizacion',
+        'tiempo_dedicado','motivo_adopcion','que_haria_cambios'
+    ];
+
+    for (const key of requiredKeys) {
+        if (!profileData[key] || profileData[key].length === 0) {
+            alert('Por favor, completa todos los campos obligatorios.');
+            return;
         }
+    }
 
-        currentUser.profileData = profileData;
-        currentUser.profileComplete = true;
+    currentUser.profileData = profileData;
+    currentUser.profileComplete = true;
 
-        alert('¡Perfil actualizado con éxito!');
-        hideAllModals();
-        renderAdoptanteScreen(); // Para refrescar la vista del perfil
-    });
+    alert('¡Perfil actualizado con éxito!');
+    hideAllModals();
+    renderAdoptanteScreen(); // Refrescar vista
+});
+
 
     document.getElementById('pet-form').addEventListener('submit', (e) => {
         e.preventDefault();
