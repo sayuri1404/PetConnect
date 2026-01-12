@@ -1,0 +1,21 @@
+id_mascota,nombre,especie,edad,raza,tamaño,color_pelo,color_pelo_secundario,tipo_pelo,comportamiento,convive_con_otros_animales,padecimientos,tratamiento_padecimiento,vacunas,sexo,senias_particulares,url_foto
+1,Firulais,perro,4,Mestizo,mediano,negro,blanco,corto,juguetón,si,ninguno,ninguno,rabia;parvo;moquillo,macho,cola ligeramente chueca,https://misfotos.com/perros/firulais.jpg
+2,Luna,perro,2,Border Collie,mediano,blanco,negro,medio,activa,si,dermatitis,shampoo medicado semanal,rabia;moquillo,hembra,una oreja caída,https://misfotos.com/perros/luna.jpg
+3,Max,perro,6,Labrador Retriever,grande,dorado,,corto,tranquilo,si,artritis,antiinflamatorio diario,rabia;moquillo,macho,cojea pata trasera derecha,https://misfotos.com/perros/max.jpg
+4,Canela,perro,3,Chihuahua,chico,beige,,corto,nerviosa,no,ninguno,ninguno,rabia,hembra,cicatriz en el lomo,https://misfotos.com/perros/canela.jpg
+5,Rocky,perro,5,Pitbull,mediano,gris,blanco,corto,territorial,no,alergia alimentaria,alimento hipoalergénico,rabia;parvo,macho,mancha blanca en pecho,https://misfotos.com/perros/rocky.jpg
+6,Molly,perro,1,Mestizo,mediano,café,,medio,juguetona,si,ninguno,ninguno,rabia;parvo,hembra,cola muy peluda,https://misfotos.com/perros/molly.jpg
+7,Toby,perro,8,Schnauzer,chico,gris,negro,duro,tranquilo,si,cataratas,tratamiento visual,rabia,macho,barba pronunciada,https://misfotos.com/perros/toby.jpg
+8,Laika,perro,3,Husky,grande,blanco,gris,medio,activa,si,ninguno,ninguno,rabia;moquillo,hembra,ojos azules intensos,https://misfotos.com/perros/laika.jpg
+9,Bruno,perro,7,Beagle,mediano,café,negro,corto,ansioso,si,sobrepeso,dieta controlada,rabia,macho,orejas largas,https://misfotos.com/perros/bruno.jpg
+10,Nala,perro,2,Mestizo,mediano,negro,,corto,juguetona,si,ninguno,ninguno,rabia;parvo,hembra,pecho blanco,https://misfotos.com/perros/nala.jpg
+11,Zeus,perro,4,Pastor Alemán,grande,negro,café,medio,protector,no,ninguno,ninguno,rabia;moquillo,macho,cola muy abundante,https://misfotos.com/perros/zeus.jpg
+12,Bella,perro,1,Golden Retriever,grande,dorado,,largo,juguetona,si,ninguno,ninguno,rabia;parvo,hembra,pelaje muy dorado,https://misfotos.com/perros/bella.jpg
+13,Chester,perro,6,Cocker Spaniel,mediano,dorado,,largo,tranquilo,si,otitis,limpieza semanal,rabia;moquillo,macho,orejas muy largas,https://misfotos.com/perros/chester.jpg
+14,Simón,perro,2,Mestizo,mediano,blanco,café,corto,juguetón,si,ninguno,ninguno,rabia,macho,manchas cafés,https://misfotos.com/perros/simon.jpg
+15,Greta,perro,3,Poodle,chico,blanco,,rizado,activa,si,ninguno,ninguno,rabia;parvo,hembra,pelaje rizado,https://misfotos.com/perros/greta.jpg
+16,Rex,perro,5,Rottweiler,grande,negro,café,corto,territorial,no,ninguno,ninguno,rabia;moquillo,macho,cara marcada,https://misfotos.com/perros/rex.jpg
+17,Lola,perro,7,Mestizo,mediano,café,,largo,tranquila,si,artritis,antiinflamatorios,rabia,hembra,cola caída,https://misfotos.com/perros/lola.jpg
+18,Otto,perro,3,Dálmata,mediano,blanco,negro,corto,activo,si,ninguno,ninguno,rabia;moquillo,macho,manchas definidas,https://misfotos.com/perros/otto.jpg
+19,Mila,perro,2,Shih Tzu,chico,blanco,café,largo,curiosa,si,problemas oculares,gotas diarias,rabia,hembra,pelo en cara muy largo,https://misfotos.com/perros/mila.jpg
+20,Thor,perro,4,Boxer,mediano,café,blanco,corto,juguetón,no,alergias,antihistamínicos,rabia;parvo,macho,cicatriz en la pata,https://misfotos.com/perros/thor.jpg

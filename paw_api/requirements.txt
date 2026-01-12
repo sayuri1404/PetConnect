@@ -1,0 +1,9 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+asyncpg==0.31.0
+passlib[bcrypt]==1.7.4
+pydantic[email]==2.8.2
+python-multipart
+python-dotenv
+# Removed psycopg (using asyncpg)
+# Removed python-jose (using simple dict auth for now)

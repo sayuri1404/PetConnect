@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetConnect 🐾 - Sistema de Adopción</title>
     <link rel="stylesheet" href="pet2.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
 </head>
+
 <body>
 
     <div class="container">
         <nav>
             <div class="logo">PetConnect 🐾</div>
-            <div id="nav-logged-out" class_name="nav-buttons">
+            <div id="nav-logged-out" class="nav-buttons">
                 <button id="show-register-btn" class="btn-nav">Registrarse</button>
                 <button id="show-login-btn" class="btn-nav">Iniciar Sesión</button>
             </div>
             <div id="nav-logged-in" class="nav-buttons hidden">
                 <span id="welcome-message"></span>
-                <button id="nav-notifications" class="btn-icon">🔔 <span id="notification-badge" class="badge hidden">0</span></button>
+                <button id="nav-home" class="btn-nav">Inicio</button>
+                <button id="nav-notifications" class="btn-icon">🔔<span id="notification-badge"
+                        class="badge hidden">0</span></button>
+                <button id="nav-donate" class="btn-nav">Donar</button>
                 <button id="nav-logout" class="btn-nav">Cerrar Sesión</button>
             </div>
         </nav>
 
         <main id="main-content">
-            
+
             <section id="welcome-screen" class="screen">
                 <div class="hero">
                     <h1>🐾 Bienvenido a PetConnect</h1>
                     <p class="hero-subtitle">Conectamos corazones con patitas que necesitan un hogar</p>
                     <div class="hero-stats">
                         <div class="stat-card">
-                            <span class="stat-number">500+</span>
+                            <span class="stat-number">+500</span>
                             <span class="stat-label">Mascotas Adoptadas</span>
                         </div>
                         <div class="stat-card">
-                            <span class="stat-number">15</span>
+                            <span class="stat-number">10</span>
                             <span class="stat-label">Fundaciones Activas</span>
                         </div>
                         <div class="stat-card">
-                            <span class="stat-number">1000+</span>
+                            <span class="stat-number">+1000</span>
                             <span class="stat-label">Familias Felices</span>
                         </div>
                     </div>
@@ -68,27 +73,9 @@
                             <label for="reg-phone">Teléfono *</label>
                             <input type="tel" id="reg-phone" name="register-phone" required>
                         </div>
-                        <div class="input-group">
-                            <label for="reg-type">Tipo de Usuario *</label>
-                            <select id="reg-type" name="register-type" required>
-                                <option value="">-- Selecciona --</option>
-                                <option value="adoptante">🏠 Adoptante</option>
-                                <option value="fundacion">🏢 Fundación</option>
-                                <option value="donador">💝 Donador</option>
-                            </select>
-                        </div>
-                        <div id="fundacion-extra" class="hidden">
-                            <div class="input-group">
-                                <label for="reg-fundacion-name">Nombre de la Fundación *</label>
-                                <input type="text" id="reg-fundacion-name" name="register-fundacion-name">
-                            </div>
-                            <div class="input-group">
-                                <label for="reg-fundacion-rfc">RFC *</label>
-                                <input type="text" id="reg-fundacion-rfc" name="register-fundacion-rfc">
-                            </div>
-                        </div>
                         <button type="submit" class="btn">Registrarse</button>
-                        <p class="form-footer">¿Ya tienes cuenta? <a href="#" id="footer-go-to-login">Inicia sesión aquí</a></p>
+                        <p class="form-footer">¿Ya tienes cuenta? <a href="#" id="footer-go-to-login">Inicia sesión
+                                aquí</a></p>
                     </form>
                 </div>
             </section>
@@ -107,7 +94,8 @@
                             <input type="password" id="login-password" name="login-password" required>
                         </div>
                         <button type="submit" class="btn">Iniciar Sesión</button>
-                        <p class="form-footer">¿No tienes cuenta? <a href="#" id="footer-go-to-register">Regístrate aquí</a></p>
+                        <p class="form-footer">¿No tienes cuenta? <a href="#" id="footer-go-to-register">Regístrate
+                                aquí</a></p>
                     </form>
                 </div>
             </section>
@@ -118,13 +106,16 @@
                     <div class="dashboard-tabs">
                         <button class="tab-btn active tab-link-adoptante" data-tab="perfil-adoptante">Mi Perfil</button>
                         <button class="tab-btn tab-link-adoptante" data-tab="buscar-mascotas">Buscar Mascotas</button>
-                        <button class="tab-btn tab-link-adoptante" data-tab="mis-solicitudes">Mis Solicitudes <span id="solicitudes-count" class="badge">0</span></button>
+                        <button class="tab-btn tab-link-adoptante" data-tab="mis-solicitudes">Mis Solicitudes <span
+                                id="solicitudes-count" class="badge">0</span></button>
+                        <button class="tab-btn tab-link-adoptante" data-tab="citas-visita">Citas de visita</button>
                     </div>
                 </div>
 
                 <div id="adoptante-perfil-adoptante" class="tab-content active adoptante-tab-content">
                     <div id="profile-status">
-                        <p class="alert alert-warning">⚠️ Completa tu perfil para poder enviar solicitudes de adopción</p>
+                        <p class="alert alert-warning">⚠️ Completa tu perfil para poder enviar solicitudes de adopción
+                        </p>
                         <button class="btn" id="complete-profile-btn">Completar Perfil</button>
                     </div>
                     <div id="profile-display" class="hidden"></div>
@@ -164,6 +155,18 @@
                 <div id="adoptante-mis-solicitudes" class="tab-content hidden adoptante-tab-content">
                     <div id="solicitudes-list"></div>
                 </div>
+                <div id="adoptante-citas-visita" class="tab-content hidden adoptante-tab-content">
+                    <div class="filters-bar" style="justify-content: space-between;">
+                        <div>
+                            <h3 style="margin: 0;">📅 Mis citas para visitar el albergue</h3>
+                            <p style="margin: 6px 0 0 0; opacity: 0.8;">Aquí se reflejan las citas que alimentan la
+                                consulta #6.</p>
+                        </div>
+                        <button class="btn btn-small" id="btn-open-cita-modal">➕ Agendar cita</button>
+                    </div>
+
+                    <div id="citas-list" class="card-list"></div>
+                </div>
             </section>
 
             <section id="fundacion-screen" class="screen hidden">
@@ -171,15 +174,53 @@
                     <h2>Panel de Fundación</h2>
                     <div class="dashboard-tabs">
                         <button class="tab-btn active tab-link-fundacion" data-tab="pets">Mis Mascotas</button>
-                        <button class="tab-btn tab-link-fundacion" data-tab="solicitudes">Solicitudes <span id="fund-solicitudes-count" class="badge">0</span></button>
+                        <button class="tab-btn tab-link-fundacion" data-tab="rescates">Rescates</button>
+                        <button class="tab-btn tab-link-fundacion" data-tab="lista-negra">Lista negra</button>
+                        <button class="tab-btn tab-link-fundacion" data-tab="solicitudes">Solicitudes <span
+                                id="fund-solicitudes-count" class="badge">0</span></button>
                         <button class="tab-btn tab-link-fundacion" data-tab="donaciones">Donaciones</button>
+                        <button class="tab-btn tab-link-fundacion" data-tab="empleados">Colaboradores</button>
                     </div>
                 </div>
 
                 <div id="fundacion-pets" class="tab-content active fundacion-tab-content">
-                    <button class="btn" id="add-pet-btn" style="width: auto; margin-bottom: 20px;">➕ Agregar Mascota</button>
+                    <button class="btn" id="add-pet-btn" style="width: auto; margin-bottom: 20px;">➕ Agregar
+                        Mascota</button>
                     <div id="fundacion-pets-list" class="pets-grid"></div>
                 </div>
+                <div id="fundacion-rescates" class="tab-content hidden fundacion-tab-content">
+                    <div class="filters-bar" style="justify-content: space-between;">
+                        <div>
+                            <h3 style="margin:0;">🚑 Rescates</h3>
+                            <p style="margin: 6px 0 0 0; opacity: 0.8;">Registro y consulta de rescates (consulta #1 y
+                                #2).</p>
+                        </div>
+                        <button class="btn btn-small" id="btn-open-rescate-modal">➕ Registrar rescate</button>
+                    </div>
+                    <div class="form-grid-2">
+                        <div>
+                            <h4>Rescates de hoy</h4>
+                            <div id="rescates-hoy-list" class="card-list"></div>
+                        </div>
+                        <div>
+                            <h4>Todos los rescates</h4>
+                            <div id="rescates-list" class="card-list"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="fundacion-lista-negra" class="tab-content hidden fundacion-tab-content">
+                    <div class="filters-bar" style="justify-content: space-between;">
+                        <div>
+                            <h3 style="margin:0;">⛔ Lista negra de dueños</h3>
+                            <p style="margin: 6px 0 0 0; opacity: 0.8;">Dueños a quienes se les retiró una mascota.</p>
+                        </div>
+                        <button class="btn btn-small" id="btn-open-lista-negra-modal">➕ Agregar a lista negra</button>
+                    </div>
+
+                    <div id="lista-negra-list" class="card-list"></div>
+                </div>
+
+
 
                 <div id="fundacion-solicitudes" class="tab-content hidden fundacion-tab-content">
                     <div id="fundacion-solicitudes-list"></div>
@@ -188,24 +229,32 @@
                 <div id="fundacion-donaciones" class="tab-content hidden fundacion-tab-content">
                     <div id="fundacion-donaciones-list"></div>
                 </div>
+
+                <div id="fundacion-empleados" class="tab-content hidden fundacion-tab-content">
+                    <div class="filters-bar" style="justify-content:space-between">
+                        <h3>Colaboradores / Empleados</h3>
+                        <button class="btn btn-small" id="btn-add-empleado">➕ Registrar Empleado</button>
+                    </div>
+                    <div id="empleados-list"></div>
+                </div>
             </section>
 
             <section id="donador-screen" class="screen hidden">
                 <div class="dashboard-header">
                     <h2>Panel de Donador</h2>
                     <div class="dashboard-tabs">
-                        <button class="tab-btn active" data-tab="hacer-donacion">Hacer Donación</button>
-                        <button class="tab-btn" data-tab="mis-donaciones">Mis Donaciones</button>
+                        <button class="tab-btn active tab-link-donador" data-tab="hacer-donacion">Hacer
+                            Donación</button>
+                        <button class="tab-btn tab-link-donador" data-tab="mis-donaciones">Mis Donaciones</button>
                     </div>
                 </div>
 
-                <div id="hacer-donacion" class="tab-content active">
+                <div id="hacer-donacion" class="tab-content active donador-tab-content">
                     <h3>Fundaciones disponibles para donar</h3>
-                    <div id="fundaciones-grid" class="donation-cards">
-                        </div>
+                    <div id="fundaciones-grid" class="donation-cards"></div>
                 </div>
 
-                <div id="mis-donaciones" class="tab-content hidden">
+                <div id="mis-donaciones" class="tab-content hidden donador-tab-content">
                     <h3>Historial de Donaciones</h3>
                     <div id="donador-historial-list"></div>
                 </div>
@@ -220,262 +269,274 @@
 
     <div id="modal-overlay" class="modal-overlay hidden"></div>
 
-<div id="modal-profile" class="modal hidden">
-    <div class="modal-content large-modal">
-        <button class="modal-close" data-close="true">&times;</button>
-        <h2>Completar Perfil de Adoptante</h2>
-        
-        <form id="profile-form">
+    <div id="modal-profile" class="modal hidden">
+        <div class="modal-content large-modal">
+            <button class="modal-close" data-close="true">&times;</button>
+            <h2>Completar Perfil de Adoptante</h2>
 
-            <fieldset>
-                <legend> 👤 Información Personal y Contacto</legend>
+            <form id="profile-form">
 
-                <div class="form-grid-2">
-                    <div class="input-group">
-                        <label for="profile-nombre">Nombre completo del solicitante *</label>
-                        <input type="text" id="profile-nombre" name="profile-nombre" required
-                               placeholder="Tal como aparece en tu identificación">
-                    </div>
-                    <div class="input-group">
-                        <label for="profile-edad">Edad *</label>
-                        <input type="number" id="profile-edad" name="profile-edad" required min="18" max="100">
-                    </div>
-                </div>
+                <fieldset>
+                    <legend> 👤 Información Personal y Contacto</legend>
 
-                <div class="form-grid-2">
-                    <div class="input-group">
-                        <label for="profile-tel-movil">Teléfono móvil *</label>
-                        <input type="tel" id="profile-tel-movil" name="profile-tel-movil" required placeholder="10 dígitos">
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="profile-nombre">Nombre completo del solicitante *</label>
+                            <input type="text" id="profile-nombre" name="profile-nombre" required
+                                placeholder="Tal como aparece en tu identificación">
+                        </div>
+                        <div class="input-group">
+                            <label for="profile-edad">Edad *</label>
+                            <input type="number" id="profile-edad" name="profile-edad" required min="18" max="100">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="profile-tel-fijo">Teléfono fijo</label>
-                        <input type="tel" id="profile-tel-fijo" name="profile-tel-fijo" placeholder="Opcional">
-                    </div>
-                </div>
 
-                <div class="input-group">
-                    <label for="profile-email">Correo electrónico *</label>
-                    <input type="email" id="profile-email" name="profile-email" required placeholder="ejemplo@correo.com">
-                </div>
-            </fieldset>
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="profile-tel-movil">Teléfono móvil *</label>
+                            <input type="tel" id="profile-tel-movil" name="profile-tel-movil" required
+                                placeholder="10 dígitos">
+                        </div>
+                        <div class="input-group">
+                            <label for="profile-tel-fijo">Teléfono fijo</label>
+                            <input type="tel" id="profile-tel-fijo" name="profile-tel-fijo" placeholder="Opcional">
+                        </div>
+                    </div>
 
-            <fieldset>
-                <legend>📍 Dirección Completa</legend>
-                <div class="input-group">
-                    <label for="profile-cp">Código Postal *</label>
-                    <input type="text" id="profile-cp" name="profile-cp" required placeholder="5 dígitos..." maxlength="5">
-                </div>
-                <div class="form-grid-2">
                     <div class="input-group">
-                        <label>Estado</label>
-                        <input type="text" id="profile-estado" name="profile-estado" disabled>
+                        <label for="profile-email">Correo electrónico *</label>
+                        <input type="email" id="profile-email" name="profile-email" required
+                            placeholder="ejemplo@correo.com">
                     </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>📍 Dirección Completa</legend>
                     <div class="input-group">
-                        <label>Municipio / Alcaldía</label>
-                        <input type="text" id="profile-municipio" name="profile-municipio" disabled>
+                        <label for="profile-cp">Código Postal *</label>
+                        <input type="text" id="profile-cp" name="profile-cp" required placeholder="5 dígitos..."
+                            maxlength="5">
                     </div>
-                </div>
-                <div class="input-group">
-                    <label for="profile-asentamiento">Colonia / Asentamiento *</label>
-                    <select id="profile-asentamiento" name="profile-asentamiento" required>
-                        <option value="">-- Esperando código postal --</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="profile-calle">Calle *</label>
-                    <input type="text" id="profile-calle" name="profile-calle" required>
-                </div>
-                <div class="form-grid-2">
-                    <div class="input-group">
-                        <label for="profile-num-ext">Número exterior *</label>
-                        <input type="text" id="profile-num-ext" name="profile-num-ext" required>
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label>Estado</label>
+                            <input type="text" id="profile-estado" name="profile-estado" disabled>
+                        </div>
+                        <div class="input-group">
+                            <label>Municipio / Alcaldía</label>
+                            <input type="text" id="profile-municipio" name="profile-municipio" disabled>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label for="profile-num-int">Número interior</label>
-                        <input type="text" id="profile-num-int" name="profile-num-int">
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>🏠 Información de Vivienda</legend>
-
-                <div class="input-group">
-                    <label for="profile-tipo-vivienda">Tipo de vivienda *</label>
-                    <select id="profile-tipo-vivienda" name="profile-tipo-vivienda" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="casa-jardin">Casa con jardín</option>
-                        <option value="casa-sin-jardin">Casa sin jardín</option>
-                        <option value="departamento-amplio">Departamento amplio</option>
-                        <option value="departamento-pequeno">Departamento pequeño</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="profile-situacion-vivienda">Situación de vivienda *</label>
-                    <select id="profile-situacion-vivienda" name="profile-situacion-vivienda" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="propia">Propia</option>
-                        <option value="alquilada">Alquilada / Rentada</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="profile-contacto-arrendador">
-                        Si es alquilada, nombre y contacto del arrendador (opcional)
-                    </label>
-                    <textarea id="profile-contacto-arrendador" name="profile-contacto-arrendador" rows="2"
-                              placeholder="Nombre, teléfono y/o correo del arrendador"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="profile-espacio-cercado">¿El patio/jardín está completamente cercado/asegurado? *</label>
-                    <select id="profile-espacio-cercado" name="profile-espacio-cercado" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                        <option value="no-aplica">No aplica</option>
-                    </select>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend> 👨‍👩‍👧‍👦 Hogar y Experiencia</legend>
-
-                <div class="form-grid-2">
-                    <div class="input-group">
-                        <label for="profile-adultos-hogar">Número de personas adultas en el hogar *</label>
-                        <input type="number" id="profile-adultos-hogar" name="profile-adultos-hogar" required min="1" max="20">
+                        <label for="profile-asentamiento">Colonia / Asentamiento *</label>
+                        <select id="profile-asentamiento" name="profile-asentamiento" required>
+                            <option value="">-- Esperando código postal --</option>
+                        </select>
                     </div>
                     <div class="input-group">
-                        <label for="profile-personas-hogar">Total de personas en el hogar *</label>
-                        <input type="number" id="profile-personas-hogar" name="profile-personas-hogar" required min="1" max="20">
+                        <label for="profile-calle">Calle *</label>
+                        <input type="text" id="profile-calle" name="profile-calle" required>
                     </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Edad de los niños en el hogar (si aplica)</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" name="profile-ninos-rango" value="0-5"> 0-5 años</label>
-                        <label><input type="checkbox" name="profile-ninos-rango" value="6-12"> 6-12 años</label>
-                        <label><input type="checkbox" name="profile-ninos-rango" value="13+"> 13+ años</label>
-                        <label><input type="checkbox" name="profile-ninos-rango" value="no-hay"> No hay niños</label>
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="profile-num-ext">Número exterior *</label>
+                            <input type="text" id="profile-num-ext" name="profile-num-ext" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="profile-num-int">Número interior</label>
+                            <input type="text" id="profile-num-int" name="profile-num-int">
+                        </div>
                     </div>
-                </div>
+                </fieldset>
 
-                <div class="input-group">
-                    <label>Otras mascotas en casa actualmente *</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" name="profile-otras-mascotas" value="perros"> Perros</label>
-                        <label><input type="checkbox" name="profile-otras-mascotas" value="gatos"> Gatos</label>
-                        <label><input type="checkbox" name="profile-otras-mascotas" value="otros"> Otros</label>
-                        <label><input type="checkbox" name="profile-otras-mascotas" value="ninguna"> Ninguna</label>
-                    </div>
-                    <input type="text" id="profile-otras-mascotas-detalle" name="profile-otras-mascotas-detalle"
-                           placeholder="Si marcaste 'Otros', especifica aquí">
-                </div>
+                <fieldset>
+                    <legend>🏠 Información de Vivienda</legend>
 
-                <div class="form-grid-2">
                     <div class="input-group">
-                        <label for="profile-experiencia-previa">¿Has tenido mascotas antes? *</label>
-                        <select id="profile-experiencia-previa" name="profile-experiencia-previa" required>
+                        <label for="profile-tipo-vivienda">Tipo de vivienda *</label>
+                        <select id="profile-tipo-vivienda" name="profile-tipo-vivienda" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="casa-jardin">Casa con jardín</option>
+                            <option value="casa-sin-jardin">Casa sin jardín</option>
+                            <option value="departamento-amplio">Departamento amplio</option>
+                            <option value="departamento-pequeno">Departamento pequeño</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="profile-situacion-vivienda">Situación de vivienda *</label>
+                        <select id="profile-situacion-vivienda" name="profile-situacion-vivienda" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="propia">Propia</option>
+                            <option value="alquilada">Alquilada / Rentada</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="profile-contacto-arrendador">
+                            Si es alquilada, nombre y contacto del arrendador (opcional)
+                        </label>
+                        <textarea id="profile-contacto-arrendador" name="profile-contacto-arrendador" rows="2"
+                            placeholder="Nombre, teléfono y/o correo del arrendador"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="profile-espacio-cercado">¿El patio/jardín está completamente cercado/asegurado?
+                            *</label>
+                        <select id="profile-espacio-cercado" name="profile-espacio-cercado" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                            <option value="no-aplica">No aplica</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend> 👨‍👩‍👧‍👦 Hogar y Experiencia</legend>
+
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="profile-adultos-hogar">Número de personas adultas en el hogar *</label>
+                            <input type="number" id="profile-adultos-hogar" name="profile-adultos-hogar" required
+                                min="1" max="20">
+                        </div>
+                        <div class="input-group">
+                            <label for="profile-personas-hogar">Total de personas en el hogar *</label>
+                            <input type="number" id="profile-personas-hogar" name="profile-personas-hogar" required
+                                min="1" max="20">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Edad de los niños en el hogar (si aplica)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="profile-ninos-rango" value="0-5"> 0-5 años</label>
+                            <label><input type="checkbox" name="profile-ninos-rango" value="6-12"> 6-12 años</label>
+                            <label><input type="checkbox" name="profile-ninos-rango" value="13+"> 13+ años</label>
+                            <label><input type="checkbox" name="profile-ninos-rango" value="no-hay"> No hay
+                                niños</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Otras mascotas en casa actualmente *</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="profile-otras-mascotas" value="perros"> Perros</label>
+                            <label><input type="checkbox" name="profile-otras-mascotas" value="gatos"> Gatos</label>
+                            <label><input type="checkbox" name="profile-otras-mascotas" value="otros"> Otros</label>
+                            <label><input type="checkbox" name="profile-otras-mascotas" value="ninguna"> Ninguna</label>
+                        </div>
+                        <input type="text" id="profile-otras-mascotas-detalle" name="profile-otras-mascotas-detalle"
+                            placeholder="Si marcaste 'Otros', especifica aquí">
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="profile-experiencia-previa">¿Has tenido mascotas antes? *</label>
+                            <select id="profile-experiencia-previa" name="profile-experiencia-previa" required>
+                                <option value="">-- Selecciona --</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="profile-nivel-experiencia">Nivel de experiencia con mascotas *</label>
+                            <select id="profile-nivel-experiencia" name="profile-nivel-experiencia" required>
+                                <option value="">-- Selecciona --</option>
+                                <option value="novato">Novato</option>
+                                <option value="intermedio">Intermedio</option>
+                                <option value="avanzado">Avanzado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="profile-horas-fuera">¿Cuánto tiempo estará sola la mascota al día? *</label>
+                        <select id="profile-horas-fuera" name="profile-horas-fuera" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="menos-4">Menos de 4 horas</option>
+                            <option value="4-8">4-8 horas</option>
+                            <option value="mas-8">Más de 8 horas</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend> 🐾 Compromiso y Estilo de Vida</legend>
+
+                    <div class="input-group">
+                        <label for="profile-nivel-actividad">Nivel de actividad que buscas en la mascota *</label>
+                        <select id="profile-nivel-actividad" name="profile-nivel-actividad" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="bajo">Bajo / De sofá</option>
+                            <option value="medio">Medio / Caminatas diarias</option>
+                            <option value="alto">Alto / Mucho ejercicio</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="profile-gastos-vet">¿Comprendes y aceptas el gasto de atención veterinaria
+                            (incluyendo emergencias)? *</label>
+                        <select id="profile-gastos-vet" name="profile-gastos-vet" required>
                             <option value="">-- Selecciona --</option>
                             <option value="si">Sí</option>
                             <option value="no">No</option>
                         </select>
                     </div>
+
                     <div class="input-group">
-                        <label for="profile-nivel-experiencia">Nivel de experiencia con mascotas *</label>
-                        <select id="profile-nivel-experiencia" name="profile-nivel-experiencia" required>
+                        <label for="profile-compromiso-esterilizacion">Compromiso de esterilización/castración (si la
+                            mascota no lo está) *</label>
+                        <select id="profile-compromiso-esterilizacion" name="profile-compromiso-esterilizacion"
+                            required>
                             <option value="">-- Selecciona --</option>
-                            <option value="novato">Novato</option>
-                            <option value="intermedio">Intermedio</option>
-                            <option value="avanzado">Avanzado</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="input-group">
-                    <label for="profile-horas-fuera">¿Cuánto tiempo estará sola la mascota al día? *</label>
-                    <select id="profile-horas-fuera" name="profile-horas-fuera" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="menos-4">Menos de 4 horas</option>
-                        <option value="4-8">4-8 horas</option>
-                        <option value="mas-8">Más de 8 horas</option>
-                    </select>
-                </div>
-            </fieldset>
+                    <div class="input-group">
+                        <label for="profile-tiempo-dedicado">¿Tiempo diario disponible para paseos y cuidados? *</label>
+                        <select id="profile-tiempo-dedicado" name="profile-tiempo-dedicado" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="menos-1h">Menos de 1 hora</option>
+                            <option value="1-2h">1 a 2 horas</option>
+                            <option value="mas-2h">Más de 2 horas</option>
+                        </select>
+                    </div>
 
-            <fieldset>
-                <legend> 🐾 Compromiso y Estilo de Vida</legend>
+                    <div class="input-group">
+                        <label for="profile-motivo-adopcion">¿Por qué quieres adoptar? *</label>
+                        <textarea id="profile-motivo-adopcion" name="profile-motivo-adopcion" rows="3"
+                            required></textarea>
+                    </div>
 
-                <div class="input-group">
-                    <label for="profile-nivel-actividad">Nivel de actividad que buscas en la mascota *</label>
-                    <select id="profile-nivel-actividad" name="profile-nivel-actividad" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="bajo">Bajo / De sofá</option>
-                        <option value="medio">Medio / Caminatas diarias</option>
-                        <option value="alto">Alto / Mucho ejercicio</option>
-                    </select>
-                </div>
+                    <div class="input-group">
+                        <label for="profile-que-haria-cambios">
+                            ¿Qué harías con la mascota si tus circunstancias cambian (mudanza, bebé, etc.)? *
+                        </label>
+                        <textarea id="profile-que-haria-cambios" name="profile-que-haria-cambios" rows="3"
+                            required></textarea>
+                    </div>
+                </fieldset>
 
-                <div class="input-group">
-                    <label for="profile-gastos-vet">¿Comprendes y aceptas el gasto de atención veterinaria (incluyendo emergencias)? *</label>
-                    <select id="profile-gastos-vet" name="profile-gastos-vet" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
+                <fieldset>
+                    <legend> 🩺 Referencias (Opcional)</legend>
+                    <div class="input-group">
+                        <label for="profile-veterinario">
+                            Nombre y contacto de tu veterinario actual/anterior
+                            <span style="font-weight: normal;">(Nombre, clínica, teléfono)</span>
+                        </label>
+                        <textarea id="profile-veterinario" name="profile-veterinario" rows="2"
+                            placeholder="Ej: Dr. Pérez, Clínica Patitas Felices, 55-1234-5678"></textarea>
+                    </div>
+                </fieldset>
 
-                <div class="input-group">
-                    <label for="profile-compromiso-esterilizacion">Compromiso de esterilización/castración (si la mascota no lo está) *</label>
-                    <select id="profile-compromiso-esterilizacion" name="profile-compromiso-esterilizacion" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="profile-tiempo-dedicado">¿Tiempo diario disponible para paseos y cuidados? *</label>
-                    <select id="profile-tiempo-dedicado" name="profile-tiempo-dedicado" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="menos-1h">Menos de 1 hora</option>
-                        <option value="1-2h">1 a 2 horas</option>
-                        <option value="mas-2h">Más de 2 horas</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="profile-motivo-adopcion">¿Por qué quieres adoptar? *</label>
-                    <textarea id="profile-motivo-adopcion" name="profile-motivo-adopcion" rows="3" required></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="profile-que-haria-cambios">
-                        ¿Qué harías con la mascota si tus circunstancias cambian (mudanza, bebé, etc.)? *
-                    </label>
-                    <textarea id="profile-que-haria-cambios" name="profile-que-haria-cambios" rows="3" required></textarea>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend> 🩺 Referencias (Opcional)</legend>
-                <div class="input-group">
-                    <label for="profile-veterinario">
-                        Nombre y contacto de tu veterinario actual/anterior
-                        <span style="font-weight: normal;">(Nombre, clínica, teléfono)</span>
-                    </label>
-                    <textarea id="profile-veterinario" name="profile-veterinario" rows="2"
-                              placeholder="Ej: Dr. Pérez, Clínica Patitas Felices, 55-1234-5678"></textarea>
-                </div>
-            </fieldset>
-
-            <button type="submit" class="btn">Guardar Perfil Completo</button>
-        </form>
+                <button type="submit" class="btn">Guardar Perfil Completo</button>
+            </form>
+        </div>
     </div>
-</div>
 
 
     <div id="modal-pet-details" class="modal hidden">
@@ -545,7 +606,7 @@
                         </select>
                     </div>
                 </div>
-                 <div class="input-group">
+                <div class="input-group">
                     <label for="pet-energy">Nivel de Energía *</label>
                     <select id="pet-energy" name="pet-energy" required>
                         <option value="">-- Selecciona --</option>
@@ -556,11 +617,13 @@
                 </div>
                 <div class="input-group">
                     <label for="pet-behavior">Comportamiento *</label>
-                    <textarea id="pet-behavior" name="pet-behavior" rows="3" required placeholder="Ej: Juguetón, tranquilo, sociable..."></textarea>
+                    <textarea id="pet-behavior" name="pet-behavior" rows="3" required
+                        placeholder="Ej: Juguetón, tranquilo, sociable..."></textarea>
                 </div>
                 <div class="input-group">
                     <label for="pet-health">Estado de Salud *</label>
-                    <textarea id="pet-health" name="pet-health" rows="2" required placeholder="Ej: Saludable, en tratamiento..."></textarea>
+                    <textarea id="pet-health" name="pet-health" rows="2" required
+                        placeholder="Ej: Saludable, en tratamiento..."></textarea>
                 </div>
                 <div class="input-group">
                     <label for="pet-cp">Código Postal (Ubicación) *</label>
@@ -580,8 +643,45 @@
                 </div>
                 <div class="input-group">
                     <label for="pet-special">Señas Particulares</label>
-                    <textarea id="pet-special" name="pet-special" rows="2" placeholder="Ej: Mancha blanca en pecho, orejas caídas..."></textarea>
+                    <textarea id="pet-special" name="pet-special" rows="2"
+                        placeholder="Ej: Mancha blanca en pecho, orejas caídas..."></textarea>
                 </div>
+
+                <fieldset style="margin-top: 16px;">
+                    <legend>🚑 Datos del Rescate</legend>
+
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="rescate-fecha">Fecha de rescate *</label>
+                            <input type="date" id="rescate-fecha" name="rescate-fecha" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="rescate-alcaldia">Alcaldía / Municipio *</label>
+                            <input type="text" id="rescate-alcaldia" name="rescate-alcaldia" required
+                                placeholder="Ej: Gustavo A. Madero">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="rescate-situacion">Situación del rescate *</label>
+                        <textarea id="rescate-situacion" name="rescate-situacion" rows="2" required
+                            placeholder="Ej: atropello, abandono, maltrato..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="rescate-necesidades">Necesidades especiales (si aplica)</label>
+                        <textarea id="rescate-necesidades" name="rescate-necesidades" rows="2"
+                            placeholder="Ej: requiere cirugía, medicación, cuidados..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="rescate-fuente">Fuente (opcional)</label>
+                        <input type="text" id="rescate-fuente" name="rescate-fuente"
+                            placeholder="Ej: reporte ciudadano, MP, redes...">
+                    </div>
+                </fieldset>
+
                 <div class="input-group">
                     <label for="pet-image">URL de Imagen</label>
                     <input type="url" id="pet-image" name="pet-image" placeholder="https://ejemplo.com/imagen.jpg">
@@ -609,11 +709,13 @@
                 </div>
                 <div class="input-group">
                     <label for="donation-amount">Monto (MXN) *</label>
-                    <input type="number" id="donation-amount" name="donation-amount" required min="50" step="50" placeholder="$500">
+                    <input type="number" id="donation-amount" name="donation-amount" required min="50" step="50"
+                        placeholder="$500">
                 </div>
                 <div class="input-group">
                     <label for="donation-message">Mensaje (opcional)</label>
-                    <textarea id="donation-message" name="donation-message" rows="3" placeholder="Un mensaje para la fundación..."></textarea>
+                    <textarea id="donation-message" name="donation-message" rows="3"
+                        placeholder="Un mensaje para la fundación..."></textarea>
                 </div>
                 <button type="submit" class="btn">Realizar Donación</button>
             </form>
@@ -628,6 +730,151 @@
         </div>
     </div>
 
-    <script src="pet3.js"></script>
+    <!-- Modal Empleados -->
+    <div id="modal-empleado" class="modal hidden">
+        <div class="modal-content medium-modal">
+            <button class="modal-close" data-close="true">&times;</button>
+            <h2>Registrar Colaborador</h2>
+            <form id="empleado-form">
+                <div class="input-group">
+                    <label for="emp-nombre">Nombre Completo *</label>
+                    <input type="text" id="emp-nombre" name="emp-nombre" required>
+                </div>
+                <div class="input-group">
+                    <label for="emp-puesto">Puesto *</label>
+                    <select id="emp-puesto" name="emp-puesto" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="Veterinario">Veterinario</option>
+                        <option value="Cuidador">Cuidador</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Voluntario">Voluntario</option>
+                        <option value="Recepcion">Recepción</option>
+                    </select>
+                </div>
+
+                <div id="emp-extra-fields" class="hidden">
+                    <div class="form-grid-2">
+                        <div class="input-group">
+                            <label for="emp-area">Área</label>
+                            <input type="text" id="emp-area" name="emp-area" placeholder="Ej: Perros, Gatos...">
+                        </div>
+                        <div class="input-group">
+                            <label for="emp-turno">Turno</label>
+                            <select id="emp-turno" name="emp-turno">
+                                <option value="">-- Selecciona --</option>
+                                <option value="Matutino">Matutino</option>
+                                <option value="Vespertino">Vespertino</option>
+                                <option value="Nocturno">Nocturno</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-cita-visita" class="modal hidden">
+        <div class="modal-content medium-modal">
+            <button class="modal-close" data-close="true">&times;</button>
+            <h2>📅 Agendar cita de visita</h2>
+
+            <form id="cita-form">
+                <div class="input-group">
+                    <label for="cita-fecha-hora">Fecha y hora *</label>
+                    <input type="datetime-local" id="cita-fecha-hora" name="cita-fecha-hora" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="cita-notas">Notas (opcional)</label>
+                    <textarea id="cita-notas" name="cita-notas" rows="2"
+                        placeholder="Ej: voy con mi familia, dudas, etc."></textarea>
+                </div>
+
+                <!-- se setea desde JS al seleccionar mascota/solicitud -->
+                <input type="hidden" id="cita-id-solicitud" name="cita-id-solicitud">
+
+                <button type="submit" class="btn">Guardar cita</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal-lista-negra" class="modal hidden">
+        <div class="modal-content medium-modal">
+            <button class="modal-close" data-close="true">&times;</button>
+            <h2>⛔ Agregar a lista negra</h2>
+
+            <form id="lista-negra-form">
+                <div class="input-group">
+                    <label for="ln-duenio-nombre">Nombre del dueño *</label>
+                    <input type="text" id="ln-duenio-nombre" name="ln-duenio-nombre" required>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label for="ln-tipo">Tipo *</label>
+                        <select id="ln-tipo" name="ln-tipo" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="temporal">Temporal</option>
+                            <option value="definitiva">Definitiva</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ln-fecha">Fecha *</label>
+                        <input type="date" id="ln-fecha" name="ln-fecha" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="ln-motivo">Motivo *</label>
+                    <textarea id="ln-motivo" name="ln-motivo" rows="2" required
+                        placeholder="Ej: maltrato, abandono, incumplimiento..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal-rescate" class="modal hidden">
+        <div class="modal-content medium-modal">
+            <button class="modal-close" data-close="true">&times;</button>
+            <h2>🚑 Registrar rescate</h2>
+
+            <form id="rescate-form">
+                <div class="input-group">
+                    <label for="rescate-id-mascota">ID Mascota (ya registrada) *</label>
+                    <input type="number" id="rescate-id-mascota" name="rescate-id-mascota" required>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label for="rescate2-fecha">Fecha *</label>
+                        <input type="date" id="rescate2-fecha" name="rescate2-fecha" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="rescate2-alcaldia">Alcaldía *</label>
+                        <input type="text" id="rescate2-alcaldia" name="rescate2-alcaldia" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="rescate2-situacion">Situación *</label>
+                    <textarea id="rescate2-situacion" name="rescate2-situacion" rows="2" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="rescate2-necesidades">Necesidades especiales</label>
+                    <textarea id="rescate2-necesidades" name="rescate2-necesidades" rows="2"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Guardar rescate</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="pet3.js?v=10"></script>
+
 </body>
+
 </html>

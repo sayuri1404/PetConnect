@@ -1,0 +1,58 @@
+id_vacunaVac,NombreVac,EscencialVac,RecomendadaVac,EsquemaContinuoVac,CondicionEspecialid_condicionCond
+1,Parvovirus canino-2,TRUE,TRUE,TRUE,
+2,Virus del distemper canino,TRUE,TRUE,TRUE,
+3,Adenovirus canino-2,TRUE,TRUE,TRUE,
+4,Rabia,TRUE,TRUE,TRUE,
+5,Leptospira spp. ,TRUE,TRUE,TRUE,
+6,Virus de la influenza canina - H3N2,FALSE,TRUE,TRUE,
+7,Virus de la influenza canina - H3N8  ,FALSE,TRUE,TRUE,
+8,CanL,FALSE,TRUE,TRUE,
+9,Herpesvirus canino-1,FALSE,TRUE,FALSE,2
+10,Parvovirus canino-2,FALSE,FALSE,FALSE,
+11,Coronavirus canino,FALSE,FALSE,FALSE,
+12,Giardia spp. Vacuna,FALSE,FALSE,FALSE,
+13,Microsporum canis vacunas,FALSE,FALSE,FALSE,
+14,CDV,TRUE,TRUE,FALSE,3
+15,CAV-2,TRUE,TRUE,FALSE,3
+16,CPV,TRUE,TRUE,FALSE,3
+17,CPiV,TRUE,TRUE,FALSE,3
+18,Bordetella bronchiseptica ,TRUE,TRUE,FALSE,3
+19,Parvovirus canino-2 +virus del distemper canino + adenovirus canino-2 ,TRUE,TRUE,TRUE,
+20,"Parvovirus canino-2+virus del distemper canino
+distemper canino ",TRUE,TRUE,FALSE,
+21,Virus de la influenza canina - bivalente H3N8 + H3N2,FALSE,TRUE,TRUE,
+22,CDV+CAV-2+CPV+CPiV ,TRUE,TRUE,FALSE,3
+23,"Bordetella bronchiseptica+CPiV
+",TRUE,TRUE,FALSE,3
+24,Bordetella bronchiseptica+CPiV+CAV-2 ,TRUE,TRUE,FALSE,3
+25,B. bronchiseptica+CPiV ,TRUE,TRUE,FALSE,3
+26,Rabia,TRUE,TRUE,TRUE,3
+27,Virus de la panleucopenia felina (FPV),TRUE,TRUE,TRUE,
+28,herpesvirus felino-1 (FHV,TRUE,TRUE,TRUE,
+29,calicivirus felino (FCV),TRUE,TRUE,TRUE,
+30,Virus de la panleucopenia felina (FPV)+herpesvirus felino-1 (FHV)+calicivirus felino (FCV),TRUE,TRUE,TRUE,
+31,Virus de la panleucopenia felina (FPV)+herpesvirus felino-1 (FHV)+calicivirus felino (FCV),TRUE,TRUE,TRUE,
+32,FPV,TRUE,TRUE,TRUE,
+33,FCV,TRUE,TRUE,TRUE,
+34,FHV,TRUE,TRUE,TRUE,
+35,FPV+FHV+FCV ,TRUE,TRUE,TRUE,
+36,FHV+FCV,TRUE,TRUE,TRUE,
+37,Rabia,TRUE,TRUE,TRUE,
+38,Rabia,TRUE,TRUE,TRUE,
+39,FelV,TRUE,TRUE,TRUE,
+40,FelV,TRUE,TRUE,TRUE,
+41,Virus de la inmunodeficiencia felina - ,FALSE,TRUE,TRUE,
+42,Chlamydia felis  ,FALSE,TRUE,TRUE,
+43,Chlamydia felis,FALSE,TRUE,TRUE,
+44,Bordetella bronchiseptica,FALSE,TRUE,TRUE,
+45,Virus de la peritonitis infecciosa felina (FIP),FALSE,FALSE,,
+46,Giardia spp. Vacunas,FALSE,FALSE,,
+47,"Microsporum canis, vacunas",FALSE,FALSE,,
+48,FPV+FHV+FCV ,TRUE,TRUE,FALSE,3
+49,FPV ,FALSE,FALSE,,3
+50,FHV+FCV ,FALSE,FALSE,,3
+51,Rabia,TRUE,TRUE,TRUE,3
+52,Enfermedad de Marek,FALSE,TRUE,FALSE,1
+53,Enfermedad de Newcastle,FALSE,TRUE,FALSE,1
+54,Leishmaniosis canina ,FALSE,TRUE,TRUE,
+55,CanL,FALSE,TRUE,TRUE,
