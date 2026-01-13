@@ -55,7 +55,7 @@ Sistema de gestión para la adopción y rescate de mascotas (PetConnect). Incluy
     - **Importante**: Abra `paw_api/.env` y verifique que `DATABASE_URL` coincida con sus credenciales locales.
     - Ejemplo: `DATABASE_URL=postgresql://usuario:password@localhost:5432/petconnect`
 
-### 4. Ejecución
+### 4. Ejecución del Backend
 Desde la raíz de la carpeta descomprimida (`petconnect/`):
 
 ```bash
@@ -64,6 +64,12 @@ uvicorn paw_api.main:app --reload
 
 - Si el servidor arranca correctamente, verá: `Application startup complete`.
 - Acceda a la documentación interactiva en: **http://127.0.0.1:8000/docs**
+
+### 5. Ejecución del Frontend
+1.  Asegúrese de que el Backend esté ejecutándose en el puerto 8000.
+2.  Busque el archivo `pet1.html` en la carpeta raíz.
+3.  Simplemente haga doble clic en `pet1.html` para abrirlo en su navegador web favorito (Chrome, Firefox, Safari).
+    - La interfaz web se conectará automáticamente con la API local (vía `pet3.js`).
 
 ## Archivos Fuente CSV
 Los archivos CSV originales (`perros.csv`, `gatos.csv`, etc.) se encuentran en la raíz del código fuente descomprimido, como referencia de los datos cargados.
