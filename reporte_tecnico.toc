@@ -1,0 +1,22 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Definición del Proyecto}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Datos de la Consultora}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objetivo del Proyecto}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Perfiles de Usuario}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Funciones por Usuario}{3}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Adoptante}{3}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Fundación}{4}{subsubsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.5}Información de Principales Entidades}{4}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Arquitectura}{4}{subsection.1.6}%
+\contentsline {section}{\numberline {2}Diseño de la Base de Datos}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Entidades Principales}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Relaciones}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Diccionario de Datos}{6}{section.3}%
+\contentsline {section}{\numberline {4}Diseño de Interfaces}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Mapa de Navegación}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Detalle de Pantallas Principales}{8}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}1. Catálogo de Adopción (Adoptante)}{8}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}2. Modal de Detalles de Mascota}{8}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}3. Perfil de Idoneidad (Adoptante)}{9}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}4. Panel de Gestión (Fundación)}{9}{subsubsection.4.2.4}%
+\contentsline {section}{\numberline {5}Consultas}{11}{section.5}%
